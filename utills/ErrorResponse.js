@@ -1,11 +1,10 @@
 /**E:\learn-code\backend-pos\utills\ErrorResponse.js */
 class ErrorResponse extends Error {
-    constructor(message, statusCode) {
+    constructor(message, statusCode,errorCode = null) {
       super(message);
       this.statusCode = statusCode;
-      this.isOperational = true; // แยก error ที่เราควบคุมได้จาก error อื่นๆ
-      
-      // เก็บ stack trace สำหรับ debugging
+      this.errorCode = errorCode;
+      this.isOperational = true; 
       Error.captureStackTrace(this, this.constructor);
     }
   }

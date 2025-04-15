@@ -1,5 +1,5 @@
 /**E:\learn-code\backend-pos\utills\helpers.js */
-
+const { Types } = require('mongoose');
 exports.generateOrderNumber = async () => {
     const date = new Date();
     const year = date.getFullYear();
@@ -26,8 +26,19 @@ exports.generateOrderNumber = async () => {
   exports.isValidObjectId = (id) => {
     return /^[0-9a-fA-F]{24}$/.test(id);
   };
-  
+  exports.isValidObjectId = (id) => {
+    return Types.ObjectId.isValid(id) && new Types.ObjectId(id).toString() === id;
+  };
   // ฟังก์ชันสำหรับการคำนวณเวลา
-  exports.formatDate = (date) => {
-    return new Date(date).toLocaleString();
+  exports.formatDate = (date, locale = 'th-TH') => {
+    return new Date(date).toLocaleDateString(locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+  exports.checkRoles = (userRoles, allowedRoles) => {
+    return userRoles.some(role => allowedRoles.includes(role));
   };

@@ -1,4 +1,4 @@
-/**JWT/config/db.js */
+/**E:\learn-code\backend-pos\config\db.js */
 const mongoose = require('mongoose');
  const logger = require('../utills/logger');
 

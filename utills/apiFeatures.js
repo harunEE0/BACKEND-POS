@@ -17,6 +17,18 @@ class ApiFeatures {
     this.query.find(JSON.parse(queryStr));
     return this;
   }
+  search() {
+    if (this.queryString.search) {
+      const searchFields = ['name', 'description']; // กำหนด fields ที่ต้องการค้นหา
+      const searchQuery = {
+        $or: searchFields.map(field => ({
+          [field]: { $regex: this.queryString.search, $options: 'i' }
+        }))
+      };
+      this.query = this.query.find(searchQuery);
+    }
+    return this;
+  }
 
   // ฟังก์ชันสำหรับการจัดเรียงข้อมูล
   sort() {
@@ -28,7 +40,15 @@ class ApiFeatures {
     }
     return this;
   }
-
+  limitFields() {
+    if (this.queryString.fields) {
+      const fields = this.queryString.fields.split(',').join(' ');
+      this.query = this.query.select(fields);
+    } else {
+      this.query = this.query.select('-__v');
+    }
+    return this;
+  }
   // ฟังก์ชันสำหรับการทำ Pagination
   paginate() {
     const page = this.queryString.page * 1 || 1;
