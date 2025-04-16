@@ -4,10 +4,10 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const path = require('path');
-const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const path = require('path'); 
 require('dotenv').config();
+
 
 // Import routes
 const auth = require('./routes/authRoute');
@@ -78,3 +78,7 @@ process.on('uncaughtException', (err) => {
   console.error('Shutting down the server due to uncaught exception');
   process.exit(1);
 });
+process.on('exit', (code) => {
+  console.log('Exiting with code:', code);
+});
+

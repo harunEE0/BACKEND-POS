@@ -67,7 +67,10 @@ const dashboardStatsSchema = new mongoose.Schema({
     {},
     { 
       $set: {
-        totalSales: await mongoose.model('Order').aggregate([...]),
+        totalSales: await mongoose.model('Order').aggregate([
+          { $match: { paymentStatus: 'paid' } },
+          { $group: { _id: null, total: { $sum: '$total' } } }
+        ]),
         totalOrders: await mongoose.model('Order').countDocuments(),
         // ... คำนวณค่าอื่นๆ
       } 
@@ -76,6 +79,7 @@ const dashboardStatsSchema = new mongoose.Schema({
   );
   return stats;
 };
+
 
  dashboardStatsSchema.statics.calculateTotalSales = async function() {
     const result = await Order.aggregate([

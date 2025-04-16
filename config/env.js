@@ -28,12 +28,13 @@ if (process.env.NODE_ENV === 'production') {
     'default_weak_secret_please_change',
     'default_weak_refresh_secret'
   ];
-  
+
   if (weakSecrets.includes(process.env.JWT_SECRET)) {
+    console.log('JWT_SECRET is weak and NODE_ENV=production'); // ✅ เพิ่มตรงนี้
     logger.error('❌ Weak JWT secret in production!');
     process.exit(1);
   }
-  
+
   if (weakSecrets.includes(process.env.REFRESH_TOKEN_SECRET)) {
     logger.error('❌ Weak refresh token secret in production!');
     process.exit(1);

@@ -448,3 +448,558 @@ SyntaxError: Unexpected token ']'
     at require (node:internal/modules/helpers:179:18)
     at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
     at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:37:34 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:38:29 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:38:49 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:39:20 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:40:08 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:41:51 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:41:57 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:43:28 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:43:38 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:43:53 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:44:12 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:44:21 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:44:30 [[31merror[39m]: e:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (e:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:44:39 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:44:45 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:44:47 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:44:49 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:44:50 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:44:52 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:44:54 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:44:57 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:44:57 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:45:37 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:45:50 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:46:04 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:46:16 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:47:05 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:47:51 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:52:51 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 20:52:55 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 21:11:06 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 21:11:15 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 21:11:40 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 21:11:57 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 21:13:04 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 21:13:28 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+2025-04-16 21:24:23 [[31merror[39m]: E:\learn-code\backend-pos\models\DashboardStats.js:70
+        totalSales: await mongoose.model('Order').aggregate([...]),
+                                                                ^
+
+SyntaxError: Unexpected token ']'
+    at internalCompileFunction (node:internal/vm:128:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1280:20)
+    at Module._compile (node:internal/modules/cjs/loader:1332:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (E:\learn-code\backend-pos\services\dashboardService.js:2:24)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
