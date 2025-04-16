@@ -30,5 +30,11 @@ const PaymentSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-
+PaymentSchema.post('save', async function(doc) {
+  if (doc.status === 'completed') {
+    await mongoose.model('Order').findByIdAndUpdate(doc.order, {
+      paymentStatus: 'paid'
+    });
+  }
+});
 module.exports = mongoose.model('Payment', PaymentSchema);

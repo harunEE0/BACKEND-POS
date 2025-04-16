@@ -3,7 +3,7 @@
 const { Server } = require('socket.io');
 const socketAuth = require('../middleware/socketAuth');
 const { CORS_ORIGIN, NODE_ENV } = require('./env');
-const logger = require('../utiสls/logger');
+const logger = require('../utills/logger');
 
 const initSocket = (server) => {
   const io = new Server(server, {

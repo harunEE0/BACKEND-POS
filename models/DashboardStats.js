@@ -62,7 +62,20 @@ const dashboardStatsSchema = new mongoose.Schema({
     { upsert: true, new: true }
   );
  };
-
+ dashboardStatsSchema.statics.updateStats = async function() {
+  const stats = await this.findOneAndUpdate(
+    {},
+    { 
+      $set: {
+        totalSales: await mongoose.model('Order').aggregate([...]),
+        totalOrders: await mongoose.model('Order').countDocuments(),
+        // ... คำนวณค่าอื่นๆ
+      } 
+    },
+    { upsert: true, new: true }
+  );
+  return stats;
+};
 
  dashboardStatsSchema.statics.calculateTotalSales = async function() {
     const result = await Order.aggregate([

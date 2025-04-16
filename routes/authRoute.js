@@ -1,4 +1,4 @@
-//**backen-pos/route/authroute.js */
+//**E:\learn-code\backend-pos\routes\authRoute.js */
 
 const express = require('express');
 const router = express.Router();

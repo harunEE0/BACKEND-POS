@@ -1,4 +1,4 @@
-/**backend-pos/controller/auth */
+/**E:\learn-code\backend-pos\controllers\auth.js */
 
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
@@ -7,6 +7,9 @@ const {JWT_SECRET,JWT_EXPIRE} = require('../config/env');
 
 exports.register = async (req, res, next) => {
     const { username, password, role } = req.body;
+    if (!['admin', 'cashier'].includes(role)) {
+      return res.status(400).json({ error: 'Invalid role' });
+    }
     
     // ตรวจสอบข้อมูลที่จำเป็น
     if (!username || !password || !role) {
@@ -51,7 +54,7 @@ exports.login = async (req,res,next) =>{
             return res.status(401).json({ success: false, message: 'Invalid credentials' });
         }
 
-        const matchPassword = await user.comparePassword(password,user.password);
+        const matchPassword = await user.comparePassword(password);
 
         if(!matchPassword) return res.status(401).json({ success: false, message: 'Invalid credentials' });
 
