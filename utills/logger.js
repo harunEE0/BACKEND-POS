@@ -2,7 +2,7 @@
 const winston = require('winston');
 const { combine, timestamp, printf, json, metadata } = winston.format;
 const devFormat = printf(({ level, message, timestamp, stack }) => {
-  return `${timestamp} [${level}]: ${stack || message}`;
+  return `${timestamp} [${level}]: ${stack || [${}] || message}`;
 });
 const prodFormat = combine(
   timestamp(),
