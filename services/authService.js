@@ -21,6 +21,16 @@ exports.registerUser = async ({ username, password, role }) => {
     throw err;
   }
 };
+exports.generateRefreshToken = async (userId) => {
+  const refreshToken = jwt.sign(
+    { id: userId },
+    process.env.REFRESH_TOKEN_SECRET,
+    { expiresIn: '7d' }
+  );
+  
+  await User.findByIdAndUpdate(userId, { refreshToken });
+  return refreshToken;
+};
 
 exports.validateUserLogin = async ({ username, password }) => {
   if (!username || !password) {

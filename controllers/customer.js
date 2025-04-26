@@ -1,7 +1,7 @@
 /**backend-pos/controller/customer */
 const Customer = require('../models/customer')
 
-exports.getCustomers = async (req, res, next) => {
+exports.getCustomer = async (req, res, next) => {
     try {
       const customers = await Customer.find().sort('-createdAt');
       res.status(200).json({
@@ -14,20 +14,19 @@ exports.getCustomers = async (req, res, next) => {
     }
   };
   
-  exports.getCustomer = async (req, res, next) => {
+  exports.getCustomers = async (req, res, next) => {
     try {
-      const customer = await Customer.findById(req.params.id);
+      const { page = 1, limit = 10, search = '' } = req.query;
+      
+      const result = await customerService.getCustomers({
+        page: parseInt(page),
+        limit: parseInt(limit),
+        search
+      });
   
-      if (!customer) {
-        return res.status(404).json({
-          success: false,
-          message: 'Customer not found',
-        });
-      }
-  
-      res.status(200).json({
+      res.json({
         success: true,
-        data: customer,
+        ...result
       });
     } catch (err) {
       next(err);

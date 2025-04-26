@@ -2,12 +2,12 @@
 const winston = require('winston');
 const { combine, timestamp, printf, json, metadata } = winston.format;
 const devFormat = printf(({ level, message, timestamp, stack }) => {
-  return `${timestamp} [${level}]: ${stack || [${}] || message}`;
+  return `${timestamp} [${level}]: ${stack  || message}`;
 });
 const prodFormat = combine(
   timestamp(),
   metadata(),
-  json()
+  winston.format.json()
 );
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
@@ -29,12 +29,7 @@ const logger = winston.createLogger({
       format: prodFormat
     }),
   ],
-  exceptionHandlers: [
-    new winston.transports.File({ filename: 'logs/exceptions.log' })
-  ],
-  rejectionHandlers: [
-    new winston.transports.File({ filename: 'logs/rejections.log' })
-  ]
+ 
 });
 
   

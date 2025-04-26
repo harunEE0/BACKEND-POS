@@ -7,6 +7,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const path = require('path'); 
 require('dotenv').config();
+require('./utills/exceptionLogger')
 
 
 // Import routes
@@ -18,6 +19,7 @@ const customers = require('./routes/customerRoute');
 const inventory = require('./routes/inventoryRoute')
 const cart = require('./routes/cartRoute')
 const dashboard = require('./routes/dashboardRoute')
+const helmet = require('helmet');
 
 // Import config and middleware
 const connectDB = require('./config/db');
@@ -29,7 +31,9 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET || 'fallback-secret-key'));
+app.use('/uploads', express.static('uploads'));
+app.use(helmet());
 app.use(cors({
   origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
   credentials: true

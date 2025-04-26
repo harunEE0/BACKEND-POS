@@ -9,7 +9,9 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        select: false
+        
     },
     email: {
         type: String,
@@ -36,9 +38,9 @@ UserSchema.pre('save', async function(next) {
   });
 
 
-UserSchema.methods.comparePassword = async function(enteredPassword){
+  UserSchema.methods.comparePassword = async function(enteredPassword){
+    console.log('Comparing:', enteredPassword, 'WITH', this.password); // 👀 ดูค่า
     return await bcrypt.compare(enteredPassword, this.password);
-
 }
 
 module.exports = mongoose.model('User', UserSchema);

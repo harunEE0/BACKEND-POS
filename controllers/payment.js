@@ -71,3 +71,16 @@ exports.processPayment = async (req, res, next) => {
       next(err);
     }
   };
+
+  exports.processRefund = async (req, res, next) => {
+    try {
+      const refund = await paymentService.processRefund({
+        paymentId: req.params.id,
+        amount: req.body.amount,
+        userId: req.user.id
+      });
+      res.json({ success: true, data: refund });
+    } catch (err) {
+      next(err);
+    }
+  };

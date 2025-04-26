@@ -1,6 +1,7 @@
 //backend-pos/controller/product
 const Product = require('../models/product');
 const InventoryLog = require('../models/inventory');
+const multer = require('multer');
 exports.getProducts = async (req, res, next) => {
   try {
     const products = await Product.find();
@@ -53,7 +54,13 @@ exports.createProduct = async (req, res, next) => {
 
     res.status(201).json({
       success: true,
-      data: product,
+      data: {
+          
+          product: product._id,
+          name: product.name,
+          price: product.price,
+          stock: product.stock,
+      },
     });
   } catch (err) {
     next(err);
@@ -94,7 +101,13 @@ exports.updateProduct = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      data: product,
+      data: {
+        product: product._id,
+        name: product.name,
+        price: product.price,
+        stock: product.stock,
+        
+      },
     });
   } catch (err) {
     next(err);
@@ -112,13 +125,33 @@ exports.deleteProduct = async (req, res, next) => {
       });
     }
 
-    await product.remove();
+    await product.deleteOne();
 
     res.status(200).json({
       success: true,
-      data: {},
+      data: {product: product._id, name: product.name },
+    message: 'Product deleted successfully',
     });
   } catch (err) {
     next(err);
   }
 };
+
+
+
+const upload = multer({ storage: multer.memoryStorage() });
+
+exports.uploadProductImage = [
+  upload.single('image'),
+  async (req, res, next) => {
+    try {
+      const imageUrl = await productService.uploadImage({
+        file: req.file,
+        productId: req.params.id
+      });
+      res.json({ success: true, imageUrl });
+    } catch (err) {
+      next(err);
+    }
+  }
+];
