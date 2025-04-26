@@ -1,3 +1,4 @@
+//E:\learn-code\backend-pos\models\DashboardStats.js
 const mongoose = require('mongoose');
 
 const dashboardStatsSchema = new mongoose.Schema({
