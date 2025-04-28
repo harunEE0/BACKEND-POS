@@ -1,0 +1,3 @@
+{"level":"\u001b[31merror\u001b[39m","message":"Login error: Cannot set headers after they are sent to the client","metadata":{"timestamp":"2025-04-28 13:15:33"}}
+{"level":"\u001b[31merror\u001b[39m","message":"Dashboard Error: DashboardStats.findOne(...).lean(...).cache is not a function","metadata":{"timestamp":"2025-04-28 13:28:55"}}
+{"level":"\u001b[31merror\u001b[39m","message":"Dashboard Error: DashboardStats.findOne(...).lean(...).cache is not a function","metadata":{"timestamp":"2025-04-28 13:29:24"}}

@@ -20,6 +20,7 @@ const inventory = require('./routes/inventoryRoute')
 const cart = require('./routes/cartRoute')
 const dashboard = require('./routes/dashboardRoute')
 const helmet = require('helmet');
+const dashboardService = require('./services/dashboardService');
 
 // Import config and middleware
 const connectDB = require('./config/db');
@@ -30,6 +31,8 @@ const errorHandler = require('./middleware/errorHandler');
 connectDB();
 
 // Middleware
+
+require('./events/dashboardEvents');
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET || 'fallback-secret-key'));
 app.use('/uploads', express.static('uploads'));

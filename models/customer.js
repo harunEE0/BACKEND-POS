@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+
+//E:\learn-code\backend-pos\models\customer.js
+ const mongoose = require('mongoose');
 
 const CustomerSchema = new mongoose.Schema({
   name: {
@@ -28,7 +30,17 @@ const CustomerSchema = new mongoose.Schema({
   },
 });
 CustomerSchema.post('save', async function() {
-  await mongoose.model('DashboardStats').updateDashboardStats();
+  try {
+    await mongoose.model('DashboardStats').updateDashboard(); // เปลี่ยนจาก updateDashboardStats()
+  } catch (err) {
+    console.error('Failed to update dashboard:', err);
+  }
 });
-
+CustomerSchema.post('deleteOne', { document: true }, async function() {
+  try {
+    await mongoose.model('DashboardStats').updateDashboard();
+  } catch (err) {
+    console.error('Failed to update dashboard after delete:', err);
+  }
+});
 module.exports = mongoose.model('Customer', CustomerSchema);

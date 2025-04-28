@@ -1,4 +1,4 @@
-/**backend-pos/middleware/auth.js */
+//E:\learn-code\backend-pos\middleware\auth.js
 
 const jwt = require('jsonwebtoken');
 const {JWT_SECRET} = require('../config/env');

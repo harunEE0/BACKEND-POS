@@ -53,11 +53,11 @@ exports.getInventoryLogs = async (req, res, next) => {
         });
       }
   
-      // Update product stock
+      // Update product
       product.stock = newStock;
       await product.save();
   
-      // Create inventory log
+      // Create log with inventory
       const log = await InventoryLog.create({
         product: productId,
         quantity: Math.abs(quantity),

@@ -12,7 +12,7 @@ exports.register = async (req, res, next) => {
       return res.status(400).json({ error: 'Invalid role' });
     }
     
-    // ตรวจสอบข้อมูลที่จำเป็น
+ 
     if (!username || !password || !role) {
         return res.status(400).json({
             success: false,
@@ -27,7 +27,7 @@ exports.register = async (req, res, next) => {
     } catch (err) {
         console.error('Registration Error:', err);
         
-        // จัดการข้อผิดพลาดเฉพาะกรณี
+       
         if (err.code === 11000) {
             return res.status(400).json({
                 success: false,

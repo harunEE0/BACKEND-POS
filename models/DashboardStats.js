@@ -2,164 +2,120 @@
 const mongoose = require('mongoose');
 
 const dashboardStatsSchema = new mongoose.Schema({
-  totalSales: { type: Number, default: 0 },
-  todaySales: { type: Number, default: 0 },
-  monthlySales: { type: Number, default: 0 },
-  totalOrders: { type: Number, default: 0 },
-  todayOrders: { type: Number, default: 0 },
+  // ส่วนของ Products
+  products: [{
+    productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+    name: String,
+    stock: Number
+  }],
+
+  // ส่วนของ Orders อัพวันต่อวัน
+  todayOrders: [{
+    orderId: { type: mongoose.Schema.Types.ObjectId, ref: 'Order' },
+    productName: String,
+    quantity: Number,
+    price: Number,
+    timestamp: { type: Date, default: Date.now }
+  }],
+
+  // ส่วนของ Customers 
   totalCustomers: { type: Number, default: 0 },
-  newCustomers: { type: Number, default: 0 },
-  topSellingProducts: [{
-    product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-    quantitySold: { type: Number, default: 0 },
-    revenue: { type: Number, default: 0 }
+
+  // ส่วนของ Payments  อัพวันต่อวัน
+  todayPayments: [{
+    paymentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Payment' },
+    amount: Number,
+    method: String,
+    timestamp: { type: Date, default: Date.now }
   }],
-  salesByCategory: [{
-    category: String,
-    totalSales: Number
-  }],
+
   lastUpdated: { type: Date, default: Date.now }
 }, { timestamps: true });
 
 
-
- dashboardStatsSchema.statics.updateDashboardStats = async function (stats) {
+dashboardStatsSchema.statics.updateDashboard = async function() {
   const today = new Date();
+  today.setHours(0, 0, 0, 0); // เริ่มต้นวันเวลา 00:00:00
 
-  const startofMonth = new Date(today.getFullYear(), today.getMonth(),1);
+  // อัปเดต Products (เรียงตาม _id)
+  const products = await mongoose.model('Product')
+    .find({})
+    .sort('_id')
+    .select('name stock');
 
-   const [totalSale, todaySales, monthlySales ] = await Promise.all([
-    this.calculateTotalSales(),
-    this.calculateSalesSince(today),
-    this.calculateSalesSince(startOfMonth)
-   ])
-   const [totalOrders, todayOrders] = await Promise.all([
-    Order.countDocuments(),
-    Order.countDocuments({ createdAt: { $gte: today } })
-  ]);
-  
-  const [totalCustomers, newCustomers] = await Promise.all([
-    Customer.countDocuments(),
-    Customer.countDocuments({ createdAt: { $gte: today } })
-  ]);
-  const topSellingProducts = await this.getTopSellingProducts();
-  const salesByCategory = await this.getSalesByCategory();
-  
+  //  อัปเดต Orders วันนี้
+  const todayOrders = await mongoose.model('Order')
+    .find({
+      createdAt: { $gte: today },
+      paymentStatus: 'paid'
+    })
+    .sort('-createdAt')
+    .populate({
+      path: 'items.product',
+      select: 'name'
+    });
+
+  //  อัปเดต Customer Count
+  const customerCount = await mongoose.model('Customer')
+    .countDocuments();
+
+  //  อัปเดต Payments วันนี้
+  const todayPayments = await mongoose.model('Payment')
+    .find({
+      createdAt: { $gte: today },
+      status: 'completed'
+    })
+    .populate({
+      path: 'order',
+      select: 'orderNumber'
+    });
+
+  // จัดรูปแบบข้อมูล
+  const formattedData = {
+    products: products.map(p => ({
+      _id: p._id,
+      name: p.name,
+      stock: p.stock
+    })),
+    todayOrders: todayOrders.map(o => ({
+      _id: o._id,
+      orderNumber: o.orderNumber,
+      items: o.items.map(i => ({
+        productName: i.product.name,
+        quantity: i.quantity,
+        price: i.price
+      })),
+      total: o.total,
+      createdAt: o.createdAt
+    })),
+    totalCustomers: await mongoose.model('Customer').countDocuments(),
+    todayPayments: todayPayments.map(p => ({
+      _id: p._id,
+      orderNumber: p.order.orderNumber,
+      amount: p.amount,
+      method: p.method,
+      createdAt: p.createdAt
+    })),
+    lastUpdated: new Date()
+  };
+
   // อัปเดตข้อมูล
   return this.findOneAndUpdate(
     {},
-    {
-      totalSales,
-      todaySales,
-      monthlySales,
-      totalOrders,
-      todayOrders,
-      totalCustomers,
-      newCustomers,
-      topSellingProducts,
-      salesByCategory,
-      lastUpdated: new Date()
-    },
+    formattedData,
     { upsert: true, new: true }
   );
- };
- dashboardStatsSchema.statics.updateStats = async function() {
-  const stats = await this.findOneAndUpdate(
-    {},
-    { 
-      $set: {
-        totalSales: await mongoose.model('Order').aggregate([
-          { $match: { paymentStatus: 'paid' } },
-          { $group: { _id: null, total: { $sum: '$total' } } }
-        ]),
-        totalOrders: await mongoose.model('Order').countDocuments(),
-        // ... คำนวณค่าอื่นๆ
-      } 
-    },
-    { upsert: true, new: true }
-  );
-  return stats;
 };
 
+// อัปเดต Dashboard ทุกครั้งที่เรียกใช้
+dashboardStatsSchema.pre('save', function(next) {
+  this.lastUpdated = new Date();
+  next();
+});
+dashboardStatsSchema.index({ lastUpdated: 1 }); // สำหรับตรวจสอบข้อมูลเก่า
+dashboardStatsSchema.index({ 'products._id': 1 }); // สำหรับค้นหาสินค้า
+dashboardStatsSchema.index({ 'todayOrders._id': 1 }); // สำหรับค้นหาออเดอร์
+dashboardStatsSchema.index({ 'todayPayments._id': 1 }); // สำหรับค้นหาการชำระเงิน
 
- dashboardStatsSchema.statics.calculateTotalSales = async function() {
-    const result = await Order.aggregate([
-      { $match: { paymentStatus: 'paid' } },
-      { $group: { _id: null, total: { $sum: '$total' } } }
-    ])
-    return result[0]?.total || 0;
- };
- dashboardStatsSchema.statics.calculateSalesSince = async function(startDate) {
-  const result = await Order.aggregate([
-    { 
-      $match: { 
-        paymentStatus: 'paid',
-        createdAt: { $gte: startDate }
-      } 
-    },
-    { $group: { _id: null, total: { $sum: '$total' } } }
-  ]);
-  return result[0]?.total || 0;
-};
-dashboardStatsSchema.statics.getTopSellingProducts = async function(limit = 5) {
-  return Order.aggregate([
-    { $unwind: '$items' },
-    { 
-      $group: { 
-        _id: '$items.product',
-        quantitySold: { $sum: '$items.quantity' },
-        revenue: { $sum: { $multiply: ['$items.price', '$items.quantity'] } }
-      } 
-    },
-    { $sort: { quantitySold: -1 } },
-    { $limit: limit },
-    {
-      $lookup: {
-        from: 'products',
-        localField: '_id',
-        foreignField: '_id',
-        as: 'productDetails'
-      }
-    },
-    { $unwind: '$productDetails' },
-    {
-      $project: {
-        product: '$_id',
-        quantitySold: 1,
-        revenue: 1,
-        productName: '$productDetails.name',
-        _id: 0
-      }
-    }
-  ]);
-};
-dashboardStatsSchema.statics.getSalesByCategory = async function() {
-  return Order.aggregate([
-    { $unwind: '$items' },
-    {
-      $lookup: {
-        from: 'products',
-        localField: 'items.product',
-        foreignField: '_id',
-        as: 'productDetails'
-      }
-    },
-    { $unwind: '$productDetails' },
-    { 
-      $group: { 
-        _id: '$productDetails.category',
-        totalSales: { $sum: { $multiply: ['$items.price', '$items.quantity'] } }
-      } 
-    },
-    { $sort: { totalSales: -1 } },
-    {
-      $project: {
-        category: '$_id',
-        totalSales: 1,
-        _id: 0
-      }
-    }
-  ]);
-};
-
-module.exports = mongoose.model('DashboardStats', dashboardStatsSchema);
+const DashboardStats = mongoose.model('DashboardStats', dashboardStatsSchema);
+module.exports = DashboardStats;
