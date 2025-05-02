@@ -1,57 +1,84 @@
 /**E:\learn-code\backend-pos\services\authService.js */
 
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
 
 class AuthService {
-  constructor() {
-    this.userModel = User;
-  }
 
-  async register({ username, password, role }) {
-    if (!username || !password || !role) {
-      throw new Error('Please provide username, password and role');
-    }
-
+  refreshToken = async (req, res, next) => {
     try {
-      return await this.userModel.create({ username, password, role });
+      const refreshToken = req.cookies.refreshToken;
+      if (!refreshToken) throw new Error('No refresh token');
+      
+      const decoded = jwt.verify(refreshToken, JWT_SECRET);
+      const user = await User.findById(decoded.id);
+      
+      const newAccessToken = jwt.sign(
+        { id: user._id, role: user.role },
+        JWT_SECRET,
+        { expiresIn: JWT_EXPIRE }
+      );
+      
+      res.json({ success: true, accessToken: newAccessToken });
     } catch (err) {
-      if (err.code === 11000) {
-        const error = new Error('Username already exists');
-        error.statusCode = 400;
-        throw error;
+      next(err);
+    }
+  };
+ 
+  sendTokenResponse = async  (user, statusCode, res) => {
+    try {
+      // 1. ตรวจสอบข้อมูล user
+      if (!user || !user._id || !user.username || !user.role) {
+        throw new Error('Invalid user data');
       }
-      throw err;
+  
+      // 2. สร้าง token
+      const token = jwt.sign(
+        {
+          id: user._id,
+          role: user.role,
+          username: user.username
+        },
+        JWT_SECRET,
+        {
+          expiresIn: JWT_EXPIRE,
+          algorithm: 'HS256'
+        }
+      );
+  
+      // 3. ตั้งค่า cookie
+      const cookieOptions = {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Strict',
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 วัน
+        domain: process.env.COOKIE_DOMAIN,
+        path: '/',
+        // signed: false // ลบออกหรือไม่ต้องกำหนด
+      };
+  
+      // 4. ส่ง response
+      res
+        .status(statusCode)
+        .cookie('token', token, cookieOptions)
+        .json({
+          success: true,
+          token, // ส่ง token กลับใน response body ด้วย (สำหรับ client ที่ไม่ใช้ cookie)
+          user: {
+            id: user._id,
+            username: user.username,
+            role: user.role
+          }
+        });
+  
+    } catch (err) {
+      console.error('Error in sendTokenResponse:', err);
+      res.status(500).json({ 
+        success: false, 
+        error: 'Failed to generate token' 
+      });
     }
-  }
-
-  async login({ username, password }) {
-    if (!username || !password) {
-      throw new Error('Please provide username and password');
-    }
-
-    const user = await this.userModel.findOne({ username }).select('+password');
-    if (!user) throw new Error('Invalid credentials');
-
-    const isMatch = await user.comparePassword(password);
-    if (!isMatch) throw new Error('Invalid credentials');
-
-    return user;
-  }
-
-  async generateToken(userId) {
-    return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
-  }
-
-  async generateRefreshToken(userId) {
-    const refreshToken = jwt.sign(
-      { id: userId },
-      process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: '7d' }
-    );
-    await this.userModel.findByIdAndUpdate(userId, { refreshToken });
-    return refreshToken;
-  }
+  };
+ 
 }
 
 module.exports = new AuthService();
