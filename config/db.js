@@ -1,6 +1,6 @@
 /**E:\learn-code\backend-pos\config\db.js */
 const mongoose = require('mongoose');
- const logger = require('../utills/logger');
+ const logger = require('../utils/logger');
 
 const connectDB = async () => {
     try{const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pos', {

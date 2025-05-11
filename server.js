@@ -7,7 +7,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const path = require('path'); 
 require('dotenv').config();
-require('./utills/exceptionLogger')
+require('./utils/exceptionLogger')
 
 
 // Import routes

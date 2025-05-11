@@ -1,6 +1,6 @@
 //E:\learn-code\backend-pos\services\dashboardService.js
 const DashboardStats = require('../models/DashboardStats');
-const logger = require('../utills/logger');
+const logger = require('../utils/logger');
 
 exports.updateDashboard = async () => {
   try {

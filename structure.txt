@@ -1,0 +1,151 @@
+
+ผมชื่อ นายฮารูน มะดีเยาะ ผมเขียนอีเมลนี้เพื่อสมัครงานในตำแหน่ง  Junior Backend / Full Stack Developer ตามที่บริษัทได้ประกาศรับสมัคร 
+ผมมีผลงานที่กำลังทำส่วนตัวเกี่ยวกับ POS ทั้งด้าน frontend เเละ backend โดยสกิลจะเน้นไปทางด้าน backend เเต่สามารถทำตามเเบบที่ส่ง requirement ได้
+ผมมุ่งมั่นที่จะทำผลงานออกมาให้ดีที่สุด และเชื่อว่าประสบการณ์ ทักษะการใช้งานคอมพิวเตอร์และโปรแกรมต่าง ๆ รวมถึงความหลงใหลในด้านนี้ จะเป็นประโยชน์ในการเสริมสร้างความสำเร็จให้กับบริษัท
+
+
+
+
+
+
+
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGJkNTg5NzNmZGY4MDU3Zj
+VjNjNlZSIsInJvbGUiOiJjYXNoaWVyIiwidXNlcm5hbWUiOiJoYWxpYXRvIiwiaWF0IjoxNzQ1NjA2MDI1LCJle
+HAiOjE3NDU2OTI0MjV9.PxcYt1-Jw8dr24dRuaYmwTQurDKARp1WDTyQqCXXZvM
+
+
+
+{
+    "success": true,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGJkNTg5NzNmZGY4MDU3ZjVjNjNlZSIsInJvbGUiOiJjYXNoaWVyIiwidXNlcm5hbWUiOiJoYWxpYXRvIiwiaWF0IjoxNzQ1NjA2Mzc0LCJleHAiOjE3NDU2OTI3NzR9.XzSGRBbt_5WJoCFx5gTfFCYnBX7ayfRu9wOrJXS9YWI",
+    "user": {
+        "id": "680bd58973fdf8057f5c63ee",
+        "username": "haliato",
+        "role": "cashier"
+    }
+}
+
+
+
+{
+    "username": "haliato",
+    "password": "1234asd"
+}
+
+
+{
+  "items": [
+    {
+      "product": "680bd9ec3cc3e4a9e1577a1d",
+      "quantity": 2
+    }
+  ],
+  "customerId": "67f4bf570b438f53933f997f",
+  "discount": 0,
+  "paymentMethod": "credit_card"
+}
+
+
+{
+    "success": true,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGJkOTYxM2NjM2U0YTllMTU3N2ExOCIsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoiaGFsaWEwMTIzIiwiaWF0IjoxNzQ1NjA3MDA5LCJleHAiOjE3NDU2OTM0MDl9.KRpPt0ZDTu4FM24dtweU5_VgIuF0XJKpMD-uBJK4LOc",
+    "user": {
+        "id": "680bd9613cc3e4a9e1577a18",
+        "username": "halia0123",
+        "role": "admin"
+    }
+}
+
+
+{
+    "username": "halia0123",
+    "password": "1234asd",
+     "role": "admin"
+
+}
+
+
+
+
+
+โครงสร้างนี้ดูดีไหม
+pos-backend/
+├── config/
+│   ├── db.js
+│   ├── env.js
+│   └── socket.js                
+├── controllers/
+│   ├── auth.js
+│   ├── cart.js                  
+│   ├── dashboard.js             
+│   ├── product.js
+│   ├── order.js
+│   ├── payment.js
+│   ├── customer.js
+│   └── inventory.js
+├── middleware/
+│   ├── auth.js
+│   ├── errorHandler.js
+│   └── socketAuth.js            
+├── models/
+│   ├── User.js
+│   ├── Product.js
+│   ├── Order.js
+│   ├── OrderItem.js
+│   ├── Payment.js
+│   ├── Customer.js
+│   ├── InventoryLog.js
+│   └── DashboardStats.js        # ใหม่! เก็บสถิติ
+├── routes/
+│   ├── auth.js
+│   ├── cart.js                  # ใหม่!
+│   ├── dashboard.js             # ใหม่!
+│   ├── product.js
+│   ├── order.js
+│   ├── payment.js
+│   ├── customer.js
+│   └── inventory.js
+├── services/                    # ใหม่! โลจิกเชิงธุรกิจ
+│   ├── cartService.js
+│   ├── dashboardService.js
+│   ├── orderService.js
+│   └── inventoryService.js
+├── sockets/                     # ใหม่! WebSocket Handlers
+│   ├── orderSocket.js
+│   └── notificationSocket.js
+├── utils/
+│   ├── jwt.js
+│   ├── helpers.js
+│   ├── logger.js
+│   └── apiFeatures.js           # ใหม่! สำหรับ Filter, Sort, Paginate
+└── server.js
+
+
+
+
+Class Declaration
+
+
+Class Expression
+
+
+Factory Function
+
+ข้อดีของการใช้ const กับ OOP:
+ป้องกันการ Accidentally Reassignment - ไม่สามารถเปลี่ยนค่าตัวแปรได้โดยบังเอิญ
+
+Block Scoping - ขอบเขตการใช้งานชัดเจน
+
+อ่านง่าย - บอกได้ทันทีว่าเป็นค่าคงที่
+
+ใช้งานกับ Modern JS ได้เต็มที่ - เข้ากันได้ดีกับ ES6+ features
+
+สรุป:
+ใช้ const ได้ปกติ เมื่อสร้างคลาสหรืออ็อบเจกต์แบบ OOP
+
+ไม่จำเป็นต้องใช้ class เสมอไป อาจใช้ Factory Function ร่วมกับ const ก็ได้
+
+รูปแบบไม่สำคัญเท่าการออกแบบ เลือกแบบที่เหมาะกับโครงงานและทีม
+
+ทั้งนี้ ทั้ง class และ const สามารถใช้งานร่วมกันได้อย่างลงตัวใน JavaScript ครับ

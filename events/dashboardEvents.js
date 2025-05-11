@@ -1,7 +1,7 @@
 //E:\learn-code\backend-pos\events\dashboardEvents.js
 const DashboardStats = require('../models/DashboardStats');
 const Customer = require('../models/customer');
-const logger = require('../utills/logger');
+const logger = require('../utils/logger');
 
 // ใช้ Polling แทน Change Stream
 let lastCustomerCount = 0;
