@@ -1,6 +1,7 @@
 /**E:\learn-code\backend-pos\services\authService.js */
 
 const jwt = require('jsonwebtoken');
+const {JWT_EXPIRE,JWT_SECRET,NODE_ENV,COOKIE_DOMAIN} =require('../config/env');
 
 class AuthService {
 
@@ -48,10 +49,10 @@ class AuthService {
       // 3. ตั้งค่า cookie
       const cookieOptions = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: NODE_ENV === 'production',
         sameSite: 'Strict',
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 วัน
-        domain: process.env.COOKIE_DOMAIN,
+        domain: COOKIE_DOMAIN,
         path: '/',
         // signed: false // ลบออกหรือไม่ต้องกำหนด
       };

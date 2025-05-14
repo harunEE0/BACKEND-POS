@@ -1,3 +1,4 @@
+//E:\learn-code\backend-pos\sockets\dashboardSocket.js
 const dashboardService = require('../services/dashboardService');
 
 const dashboardSocket = (io, socket) => {

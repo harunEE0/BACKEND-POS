@@ -4,14 +4,16 @@
 const redis = require('redis');
 const logger = require('../utils/logger');
 
+const {REDIS_PORT,REDIS_PASSWORD,REDIS_HOST} =require('../config/env');
+
 class CacheService {
   constructor() {
     this.client = redis.createClient({
       socket: {
-        host: process.env.REDIS_HOST || 'localhost',
-        port: parseInt(process.env.REDIS_PORT) || 6379,
+        host: REDIS_HOST || 'localhost',
+        port: parseInt(REDIS_PORT) || 6379,
       },
-      password: process.env.REDIS_PASSWORD || undefined, // ✅ เพิ่มตรงนี้
+      password: REDIS_PASSWORD || undefined, // ✅ เพิ่มตรงนี้
     });
 
     this.client.on('error', (err) => {

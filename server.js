@@ -1,16 +1,19 @@
-//**E:\learn-code\backend-pos\server.js */
-
-
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const path = require('path'); 
+const path = require('path');
+const helmet = require('helmet');
 require('dotenv').config();
-require('./utils/exceptionLogger')
 
+// Utilities
+const logger = require('./utils/logger');
+const { connectRedis } = require('./config/redis'); // เพิ่มการเชื่อมต่อ Redis
+const connectDB = require('./config/db');
+const { PORT } = require('./config/env');
+const errorHandler = require('./middleware/errorHandler');
 
-// Import routes
+// Routes
 const auth = require('./routes/authRoute');
 const products = require('./routes/productRoute');
 const orders = require('./routes/orderRoute');
@@ -19,73 +22,84 @@ const customers = require('./routes/customerRoute');
 const inventory = require('./routes/inventoryRoute')
 const cart = require('./routes/cartRoute')
 const dashboard = require('./routes/dashboardRoute')
-const helmet = require('helmet');
-const dashboardService = require('./services/dashboardService');
+// ... import routes อื่นๆ ...
 
-// Import config and middleware
-const connectDB = require('./config/db');
-const { PORT } = require('./config/env'); //port is 5000
-const errorHandler = require('./middleware/errorHandler');
+// Database Connections
+const initializeServers = async () => {
+  try {
+    // เชื่อมต่อ MongoDB
+    await connectDB();
+    
+    // เชื่อมต่อ Redis
+    await connectRedis(); 
 
-// Connect to database
-connectDB();
+    // Middleware
+    app.use(express.json());
+    app.use(cookieParser(process.env.COOKIE_SECRET || 'fallback-secret-key'));
+    app.use('/uploads', express.static('uploads'));
+    app.use(helmet());
+    app.use(cors({
+      origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+      credentials: true
+    }));
 
-// Middleware
+    // Production Static Files
+    if (process.env.NODE_ENV === 'production') {
+      app.use(express.static(path.join(__dirname, '../client/build')));
+      app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+      });
+    }
 
-require('./events/dashboardEvents');
-app.use(express.json());
-app.use(cookieParser(process.env.COOKIE_SECRET || 'fallback-secret-key'));
-app.use('/uploads', express.static('uploads'));
-app.use(helmet());
-app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
-  credentials: true
-}));
+    // Routes
+    app.use('/api/v1/auth', auth);
+    app.use('/api/v1/products', products);
+    app.use('/api/v1/orders', orders);
+    app.use('/api/v1/payments', payments);
+    app.use('/api/v1/customers', customers);
+    app.use('/api/v1/inventory', inventory);
+    app.use('/api/v1/cart', cart);
+    app.use('/api/v1/dashboard', dashboard);
+    // ... ใช้ routes อื่นๆ ...
 
-// Serve static files in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-  });
-}
+    // Error Handling
+    app.use(errorHandler);
 
-// Routes
-app.use('/api/v1/auth', auth);
-app.use('/api/v1/products', products);
-app.use('/api/v1/orders', orders);
-app.use('/api/v1/payments', payments);
-app.use('/api/v1/customers', customers);
-app.use('/api/v1/inventory', inventory);
-app.use('/api/v1/cart', cart);
-app.use('/api/v1/dashboard', dashboard);
+    // Start Server
+    const server = app.listen(PORT, () => {
+      logger.info(`Server is running on port ${PORT}`);
+      logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    });
 
-// Error handling middleware
-app.use(errorHandler);
+    // Graceful Shutdown
+    const shutdown = async () => {
+      logger.info('Shutting down gracefully...');
+      await mongoose.connection.close();
+      await redisClient.quit();
+      server.close(() => {
+        logger.info('Server closed');
+        process.exit(0);
+      });
+    };
 
-// Start server
-const server = app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-});
+    process.on('SIGTERM', shutdown);
+    process.on('SIGINT', shutdown);
 
-// Handle unhandled promise rejections
-process.on('unhandledRejection', (err) => {
-  console.error(`Error: ${err.message}`);
-  console.error('Shutting down the server due to unhandled promise rejection');
-  server.close(() => {
+  } catch (err) {
+    logger.error(`Server initialization failed: ${err.message}`);
     process.exit(1);
-  });
+  }
+};
+
+// Event Listeners
+process.on('unhandledRejection', (err) => {
+  logger.error(`Unhandled Rejection: ${err.message}`);
 });
 
-// Handle uncaught exceptions
 process.on('uncaughtException', (err) => {
-  console.error(`Error: ${err.message}`);
-  console.error('Shutting down the server due to uncaught exception');
+  logger.error(`Uncaught Exception: ${err.message}`);
   process.exit(1);
 });
-process.on('exit', (code) => {
-  console.log('Exiting with code:', code);
-});
 
+// Initialize
+initializeServers();

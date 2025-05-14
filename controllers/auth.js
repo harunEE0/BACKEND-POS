@@ -1,8 +1,6 @@
 /**E:\learn-code\backend-pos\controllers\auth.js */
 
 const User = require('../models/User');
-const jwt = require('jsonwebtoken');
-const {JWT_SECRET,JWT_EXPIRE,NODE_ENV } = require('../config/env');
 const rateLimit = require('express-rate-limit');
 const logger  = require('../utils/logger');
 const AuthService = require('../services/authService')

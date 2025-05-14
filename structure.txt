@@ -74,6 +74,7 @@ pos-backend/
 ├── config/
 │   ├── db.js
 │   ├── env.js
+│   ├── redis.js
 │   └── socket.js                
 ├── controllers/
 │   ├── auth.js
@@ -84,6 +85,8 @@ pos-backend/
 │   ├── payment.js
 │   ├── customer.js
 │   └── inventory.js
+├──event/
+│   ├── dashboardEvents.js
 ├── middleware/
 │   ├── auth.js
 │   ├── errorHandler.js
@@ -112,6 +115,7 @@ pos-backend/
 │   ├── orderService.js
 │   └── inventoryService.js
 ├── sockets/                     # ใหม่! WebSocket Handlers
+│   ├── dashboardSocket.js
 │   ├── orderSocket.js
 │   └── notificationSocket.js
 ├── utils/
