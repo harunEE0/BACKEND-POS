@@ -69,7 +69,7 @@ HAiOjE3NDU2OTI0MjV9.PxcYt1-Jw8dr24dRuaYmwTQurDKARp1WDTyQqCXXZvM
 
 
 
-โครงสร้างนี้ดูดีไหม
+โครงสร้างproject
 pos-backend/
 ├── config/
 │   ├── db.js
@@ -112,6 +112,8 @@ pos-backend/
 ├── services/                    # ใหม่! โลจิกเชิงธุรกิจ
 │   ├── cartService.js
 │   ├── dashboardService.js
+│   ├── authService.js
+│   ├── catchService.js
 │   ├── orderService.js
 │   └── inventoryService.js
 ├── sockets/                     # ใหม่! WebSocket Handlers
@@ -121,6 +123,10 @@ pos-backend/
 ├── utils/
 │   ├── jwt.js
 │   ├── helpers.js
+│   ├── errorHandler.js
+│   ├── ErrorResponse.js
+│   ├── exceptionLogger.js
+│   ├── scheduler.js
 │   ├── logger.js
 │   └── apiFeatures.js           # ใหม่! สำหรับ Filter, Sort, Paginate
 └── server.js

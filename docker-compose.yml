@@ -13,21 +13,11 @@ services:
       interval: 5s
       timeout: 30s
       retries: 3
-
-  mongo:
-    image: mongo:6
-    container_name: mongo-container
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
-    environment:
-      MONGO_INITDB_DATABASE: BackendPoS
-    healthcheck:
-      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
-      interval: 5s
-      timeout: 30s
-      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
   node_app:
     build: .
@@ -35,21 +25,30 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - NODE_ENV=development
-      - REDIS_URL=redis://redis:6379
-      - MONGODB_URI=mongodb://mongo:27017/BackendPoS
+      NODE_ENV: development
+      REDIS_URL: redis://redis:6379
+      MONGODB_URI: mongodb://host.docker.internal:27017/BackendPoS
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     env_file:
-      - .env    
+      - .env
     depends_on:
       redis:
         condition: service_healthy
-      mongo:
-        condition: service_healthy
     volumes:
-      - ./:/app
-      - node_modules:/app/node_modules
+      - .my-backend:/app
+      - /app/node_modules
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 1G
 
 volumes:
   redis_data:
-  mongo_data:
-  node_modules:
+  my-backend:

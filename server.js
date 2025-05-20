@@ -8,7 +8,6 @@ require('dotenv').config();
 
 // Utilities
 const logger = require('./utils/logger');
-const { connectRedis } = require('./config/redis'); // เพิ่มการเชื่อมต่อ Redis
 const connectDB = require('./config/db');
 const { PORT } = require('./config/env');
 const errorHandler = require('./middleware/errorHandler');
@@ -30,8 +29,7 @@ const initializeServers = async () => {
     // เชื่อมต่อ MongoDB
     await connectDB();
     
-    // เชื่อมต่อ Redis
-    await connectRedis(); 
+    // เชื่อมต่อ Redis 
 
     // Middleware
     app.use(express.json());
@@ -75,7 +73,6 @@ const initializeServers = async () => {
     const shutdown = async () => {
       logger.info('Shutting down gracefully...');
       await mongoose.connection.close();
-      await redisClient.quit();
       server.close(() => {
         logger.info('Server closed');
         process.exit(0);

@@ -3,9 +3,12 @@ const mongoose = require('mongoose');
 const logger = require('../utils/logger');
 const { MONGODB_URI } = require('../config/env');
 
+
+
+ let retime = 1000*60*30;
 const connectDB = async () => {
   const options = {
-    serverSelectionTimeoutMS: 5000, // 5 วินาที
+    serverSelectionTimeoutMS: retime, 
     socketTimeoutMS: 45000, // 45 วินาที
     maxPoolSize: 10, // Connection Pool
     retryWrites: true,
@@ -15,7 +18,7 @@ const connectDB = async () => {
   let retries = 5;
   while (retries > 0) {
     try {
-      const conn = await mongoose.connect(MONGODB_URI || 'mongodb://localhost:27017/BackendPoS', options);
+      const conn = await mongoose.connect(process.env.MONGODB_URI  ||'mongodb://root:example@mongo:27017/BackendPoS?authSource=admin'|| MONGODB_URI, options);
       
       logger.info(`MongoDB Connected: ${conn.connection.host}`);
       setupEventListeners();
@@ -30,7 +33,7 @@ const connectDB = async () => {
         process.exit(1);
       }
       
-      await new Promise(resolve => setTimeout(resolve, 5000)); // รอ 5 วินาทีก่อนลองใหม่
+      await new Promise(resolve => setTimeout(resolve, 5000)); 
     }
   }
 };
@@ -43,6 +46,9 @@ function setupEventListeners() {
 
   mongoose.connection.on('error', (err) => {
     logger.error(`MongoDB connection error: ${err.message}`);
+  });
+  mongoose.connection.once('open', () => {
+    console.log('MongoDB connection ready!');
   });
 
   mongoose.connection.on('disconnected', () => {

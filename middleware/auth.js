@@ -2,9 +2,9 @@
 
 const jwt = require('jsonwebtoken');
 const {JWT_SECRET} = require('../config/env');
-const User = require('../models/User')
-
-
+const User = require('../models/User');
+const SessionManager = require('../utils/sessionManager');
+const{ErrorResponse} = require('../utils/ErrorResponse')
 
 
  const protect = async (req, res, next) => {
@@ -68,5 +68,30 @@ const auth = async (req, res, next) => {
   }
 };
 
+const requireAuth = async (req, res , next) => {
+  try {
 
-module.exports = {authorize, protect, auth};
+    
+    const token = req.cookies?.session_token || req.headers?.authorization?.split(' ')[1];
+    if (!token) {
+      throw new ErrorResponse('No token provided', 401);
+    }
+
+    const session = await SessionManager.verifySession(token);
+    if (!session) {
+      throw new ErrorResponse('Invalid session', 401);
+    }
+
+    req.user = session;
+    req.token = token;
+    next();
+  } catch (error) {
+    next(err);
+    
+  }
+}
+
+
+
+
+module.exports = {authorize, protect, auth,requireAuth};
