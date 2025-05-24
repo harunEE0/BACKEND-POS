@@ -10,7 +10,7 @@ const {checkSession} = require('../middleware/sessionCheck')
 
 router.post('/register', register);
 router.post('/admin/register', protect, authorize('admin'), register);
-router.post('/login',checkSession, login);
+router.post('/login',login);
 router.get('/:id',protect, getme);
 router.get('/logout',checkSession, logout);
 

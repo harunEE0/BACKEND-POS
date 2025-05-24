@@ -64,7 +64,13 @@ HAiOjE3NDU2OTI0MjV9.PxcYt1-Jw8dr24dRuaYmwTQurDKARp1WDTyQqCXXZvM
      "role": "admin"
 
 }
-
+{
+    "username": "admin",
+    "password": "strongpassword!123",
+    "role":"admin"
+    
+}
+http://localhost:5000/api/v1/auth/register
 
 
 
@@ -89,7 +95,9 @@ pos-backend/
 │   ├── dashboardEvents.js
 ├── middleware/
 │   ├── auth.js
+│   ├── cartMiddleware.js
 │   ├── errorHandler.js
+│   ├── sessionCheck.js
 │   └── socketAuth.js            
 ├── models/
 │   ├── User.js
@@ -99,27 +107,30 @@ pos-backend/
 │   ├── Payment.js
 │   ├── Customer.js
 │   ├── InventoryLog.js
-│   └── DashboardStats.js        # ใหม่! เก็บสถิติ
+│   └── DashboardStats.js        
 ├── routes/
 │   ├── auth.js
-│   ├── cart.js                  # ใหม่!
-│   ├── dashboard.js             # ใหม่!
+│   ├── cart.js                 
+│   ├── dashboard.js             
 │   ├── product.js
 │   ├── order.js
 │   ├── payment.js
 │   ├── customer.js
 │   └── inventory.js
-├── services/                    # ใหม่! โลจิกเชิงธุรกิจ
+├── services/                   
 │   ├── cartService.js
 │   ├── dashboardService.js
 │   ├── authService.js
-│   ├── catchService.js
+│   ├── cacheService.js
 │   ├── orderService.js
 │   └── inventoryService.js
-├── sockets/                     # ใหม่! WebSocket Handlers
+├── sockets/                     
 │   ├── dashboardSocket.js
 │   ├── orderSocket.js
 │   └── notificationSocket.js
+├── validatoe/                     
+│   ├── authvalidatoe.js
+│   └── productvalidatoe.js
 ├── utils/
 │   ├── jwt.js
 │   ├── helpers.js
@@ -128,7 +139,15 @@ pos-backend/
 │   ├── exceptionLogger.js
 │   ├── scheduler.js
 │   ├── logger.js
-│   └── apiFeatures.js           # ใหม่! สำหรับ Filter, Sort, Paginate
+│   ├── sessionManager.js
+│   └── apiFeatures.js           
+│ 
+│ 
+│ 
+├── dockerfile
+│
+├── docker-compose.yml
+│ 
 └── server.js
 
 

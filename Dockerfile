@@ -5,8 +5,8 @@ FROM node:20.12.2 AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --only=production
 
+RUN npm install
 # Stage 2: Runtime
 FROM node:20.12.2-slim
 

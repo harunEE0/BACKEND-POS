@@ -2,67 +2,62 @@
 const asyncHandler = require('express-async-handler');
 const DashboardStats = require('../models/DashboardStats');
 const logger = require('../utils/logger');
-const catcheService = require('../services/cacheService');
+const catchService = require('../services/cacheService');
+const {redisClient} = require('../config/redis');
+
+const CACHE_TTL = 300
+
+const getCachedData = async (key) =>{
+  try {
+    const cachedData = await  catchService.get(key);
+    return cachedData? JSON.parse(cachedData) : null;
+  } catch (error) {
+    logger.error(`Error getting cache for key ${key}: ${error.message}`);
+    throw error;
+    
+  }
+};
 
 
+function isDataStale(lastupdate){
+  const now = new Date();
+  const lastUpdateTime = new Date(lastupdate);
+  return (now - lastUpdateTime) > (CACHE_TTL * 1000);
+}
 
 exports.getDashboardData = asyncHandler(async (req, res) => {
   try {
     const cacheKey = 'dashboard_stats';
-    const cachedData = await cacheService.get(cacheKey);
+    const cachedData = await getCachedData(cacheKey);
 
     // 1. ตรวจสอบว่ามีข้อมูลใน cache และไม่ล้าสมัย
-    if (cachedData) {
-      const parsedData = JSON.parse(cachedData);
-      const isStale = !parsedData || 
-        (Date.now() - new Date(parsedData.lastUpdated).getTime()) > 300000;
-      
-      if (!isStale) {
-        logger.info('Serving from cache');
-        return res.json({
-          success: true,
-          fromCache: true,
-          lastUpdated: parsedData.lastUpdated,
-          products: parsedData.products,
-          todayOrders: parsedData.todayOrders,
-          customerCount: parsedData.customerCount,
-          todayPayments: parsedData.todayPayments
-        });
-      }
-    }
+    if (cachedData && isDataStale(cachedData.lastUpdated)) {
+      logger.info('serving dashboard data from cache');
+      return res.json({
+        success: true,
+        fromCache: true,
+        ...cachedData
+      });
+    };
 
     // 2. ดึงข้อมูลจาก database
     let data = await DashboardStats.findOne({}).lean();
-    
-    // 3. ตรวจสอบว่าข้อมูลล้าสมัยหรือไม่
-    const isStale = !data || (Date.now() - new Date(data.lastUpdated).getTime()) > 300000;
-    
-    if (isStale) {
+    if(!data || isDataStale(data.lastUpdated)){
       logger.info('Dashboard data is stale, updating...');
       data = await DashboardStats.updateDashboard();
     }
 
-    // 4. บันทึกข้อมูลลง cache เป็นเวลา 5 นาที
-    await cacheService.setex(cacheKey, 300, JSON.stringify({
-      lastUpdated: data.lastUpdated,
-      products: data.products,
-      todayOrders: data.todayOrders,
-      customerCount: data.customerCount,
-      todayPayments: data.todayPayments
-    }));
-
-    // 5. ส่ง response
-    res.json({
+    await catchService.setex(cacheKey, CACHE_TTL, JSON.stringify(cachedData));
+    
+    redisClient.json({
       success: true,
       fromCache: false,
-      lastUpdated: data.lastUpdated,
-      products: data.products,
-      todayOrders: data.todayOrders,
-      customerCount: data.customerCount,
-      todayPayments: data.todayPayments
-    });
+      ...cachedData
+    })
+
+  
   } catch (err) {
-    logger.error(`Dashboard Error: ${err.message}`);
+   logger.error(`Dashboard Error: ${err.message}`);
     res.status(500).json({
       success: false,
       error: 'Server Error'

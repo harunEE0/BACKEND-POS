@@ -1,50 +1,138 @@
 //E:\learn-code\backend-pos\models\DashboardStats.js
 const mongoose = require('mongoose');
+const cacheService = require('../services/cacheService');
+const logger = require('../utils/logger');
 
 const dashboardStatsSchema = new mongoose.Schema({
   // ส่วนของ Products
   products: [{
-    productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-    name: String,
-    stock: Number
+    productId: { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'Product',
+      index: true // เพิ่ม index เพื่อประสิทธิภาพ
+    },
+    name: {
+      type: String,
+      trim: true
+    },
+    stock: {
+      type: Number,
+      min: 0
+    }
   }],
 
   // ส่วนของ Orders อัพวันต่อวัน
   todayOrders: [{
-    orderId: { type: mongoose.Schema.Types.ObjectId, ref: 'Order' },
-    productName: String,
-    quantity: Number,
-    price: Number,
-    timestamp: { type: Date, default: Date.now }
+    orderId: { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'Order',
+      index: true
+    },
+    productName: {
+      type: String,
+      trim: true
+    },
+    quantity: {
+      type: Number,
+      min: 1
+    },
+    price: {
+      type: Number,
+      min: 0
+    },
+    timestamp: { 
+      type: Date, 
+      default: Date.now,
+      index: true 
+    }
   }],
 
   // ส่วนของ Customers 
   totalCustomers: { type: Number, default: 0 },
 
   // ส่วนของ Payments  อัพวันต่อวัน
-  todayPayments: [{
-    paymentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Payment' },
-    amount: Number,
-    method: String,
-    timestamp: { type: Date, default: Date.now }
+ todayPayments: [{
+    paymentId: { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'Payment',
+      index: true
+    },
+    amount: {
+      type: Number,
+      min: 0
+    },
+    method: {
+      type: String,
+      enum: ['cash', 'credit', 'transfer', 'other']
+    },
+    timestamp: { 
+      type: Date, 
+      default: Date.now,
+      index: true 
+    }
   }],
 
-  lastUpdated: { type: Date, default: Date.now }
-}, { timestamps: true });
+  lastUpdated: { 
+    type: Date, 
+    default: Date.now,
+    index: true 
+   }
+}, { timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
+ });
 
 
 dashboardStatsSchema.statics.updateDashboard = async function() {
-  const today = new Date();
+  try {
+    const today = new Date();
   today.setHours(0, 0, 0, 0); // เริ่มต้นวันเวลา 00:00:00
 
-  // อัปเดต Products (เรียงตาม _id)
-  const products = await mongoose.model('Product')
+   // ดึงข้อมูลแบบ parallel ด้วย Promise.all
+    const [products, todayOrders, customerCount, todayPayments] = await Promise.all([
+      this.getProductsData(),
+      this.getTodayOrdersData(today),
+      this.getCustomerCount(),
+      this.getTodayPaymentsData(today)
+    ]);
+     const formattedData = {
+      products,
+      todayOrders,
+      totalCustomers: customerCount,
+      todayPayments,
+      lastUpdated: new Date()
+    };
+  
+     const updatedStats = await this.findOneAndUpdate(
+      {},
+      formattedData,
+      { 
+        upsert: true, 
+        new: true,
+        setDefaultsOnInsert: true
+      }
+    );
+    logger.info('Dashboard updated and cache flushed');
+     return updatedStats;
+  } catch (error) {
+    logger.error(`Error updating dashboard: ${error.message}`);
+    throw error;
+    
+  }
+};
+
+// Helper method สำหรับดึงข้อมูลสินค้า
+dashboardStatsSchema.statics.getProductsData = async function() {
+  return mongoose.model('Product')
     .find({})
     .sort('_id')
-    .select('name stock');
+    .select('name stock')
+    .lean();
+};
 
-  //  อัปเดต Orders วันนี้
-  const todayOrders = await mongoose.model('Order')
+// Helper method สำหรับดึงคำสั่งซื้อวันนี้
+dashboardStatsSchema.statics.getTodayOrdersData = async function(today) {
+  return mongoose.model('Order')
     .find({
       createdAt: { $gte: today },
       paymentStatus: 'paid'
@@ -53,14 +141,18 @@ dashboardStatsSchema.statics.updateDashboard = async function() {
     .populate({
       path: 'items.product',
       select: 'name'
-    });
+    })
+    .lean();
+};
 
-  //  อัปเดต Customer Count
-  const customerCount = await mongoose.model('Customer')
-    .countDocuments();
+// Helper method สำหรับนับจำนวนลูกค้า
+dashboardStatsSchema.statics.getCustomerCount = async function() {
+  return mongoose.model('Customer').countDocuments();
+};
 
-  //  อัปเดต Payments วันนี้
-  const todayPayments = await mongoose.model('Payment')
+// Helper method สำหรับดึงการชำระเงินวันนี้
+dashboardStatsSchema.statics.getTodayPaymentsData = async function(today) {
+  return mongoose.model('Payment')
     .find({
       createdAt: { $gte: today },
       status: 'completed'
@@ -68,54 +160,19 @@ dashboardStatsSchema.statics.updateDashboard = async function() {
     .populate({
       path: 'order',
       select: 'orderNumber'
-    });
-
-  // จัดรูปแบบข้อมูล
-  const formattedData = {
-    products: products.map(p => ({
-      _id: p._id,
-      name: p.name,
-      stock: p.stock
-    })),
-    todayOrders: todayOrders.map(o => ({
-      _id: o._id,
-      orderNumber: o.orderNumber,
-      items: o.items.map(i => ({
-        productName: i.product.name,
-        quantity: i.quantity,
-        price: i.price
-      })),
-      total: o.total,
-      createdAt: o.createdAt
-    })),
-    totalCustomers: await mongoose.model('Customer').countDocuments(),
-    todayPayments: todayPayments.map(p => ({
-      _id: p._id,
-      orderNumber: p.order.orderNumber,
-      amount: p.amount,
-      method: p.method,
-      createdAt: p.createdAt
-    })),
-    lastUpdated: new Date()
-  };
-
-  // อัปเดตข้อมูล
-  return this.findOneAndUpdate(
-    {},
-    formattedData,
-    { upsert: true, new: true }
-  );
+    })
+    .lean();
 };
 
 // อัปเดต Dashboard ทุกครั้งที่เรียกใช้
-dashboardStatsSchema.pre('save', function(next) {
-  this.lastUpdated = new Date();
-  next();
-});
-dashboardStatsSchema.index({ lastUpdated: 1 }); // สำหรับตรวจสอบข้อมูลเก่า
-dashboardStatsSchema.index({ 'products._id': 1 }); // สำหรับค้นหาสินค้า
-dashboardStatsSchema.index({ 'todayOrders._id': 1 }); // สำหรับค้นหาออเดอร์
-dashboardStatsSchema.index({ 'todayPayments._id': 1 }); // สำหรับค้นหาการชำระเงิน
+
+// Indexes สำหรับการค้นหาที่รวดเร็ว
+dashboardStatsSchema.index({ lastUpdated: 1 });
+dashboardStatsSchema.index({ 'products.productId': 1 });
+dashboardStatsSchema.index({ 'todayOrders.orderId': 1 });
+dashboardStatsSchema.index({ 'todayPayments.paymentId': 1 });
+dashboardStatsSchema.index({ 'todayOrders.timestamp': 1 });
+dashboardStatsSchema.index({ 'todayPayments.timestamp': 1 });
 
 const DashboardStats = mongoose.model('DashboardStats', dashboardStatsSchema);
 module.exports = DashboardStats;

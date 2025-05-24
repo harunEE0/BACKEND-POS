@@ -91,7 +91,7 @@ exports.login = [
           message: "Invalid credentials",
         });
 
-      const sessionKey = await sessionManager.createSession(user._id.toString, {
+      const sessionKey = await sessionManager.createSession(user._id.toString(), {
         id: user._id,
         username: user.username,
         role: user.role,
@@ -101,7 +101,7 @@ exports.login = [
 
       logger.info(`User logged in: ${user.username} (ID: ${user._id})`);
 
-      res.cookie("sessionKey", sessionKey, {
+      res.cookie("session_token", sessionKey, {
         httpOnly: true,
         secure: NODE_ENV === "production", // Set to true in production
         signed: true, // Use signed cookies if you have a secret
@@ -109,17 +109,16 @@ exports.login = [
         domain: COOKIE_DOMAIN, // Set your domain here
       });
 
-      res.status(200).json({
+       res.status(200).json({
         success: true,
         user: {
           id: user._id,
           username: user.username,
           role: user.role,
         },
+        sessionToken: sessionKey // <-- ส่ง session token กลับไปด้วย
       });
-      // อย่าลืมลบถ้า test เสร็จ
-      console.log(AuthService.sendTokenResponse(user, 201, res));
-      res.send(AuthService.sendTokenResponse(user, 201, res));
+     
     } catch (err) {
        logger.error(`Login error: ${err.message}`, { stack: err.stack });
     next(err);

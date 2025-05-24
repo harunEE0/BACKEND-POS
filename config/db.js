@@ -18,7 +18,7 @@ const connectDB = async () => {
   let retries = 5;
   while (retries > 0) {
     try {
-      const conn = await mongoose.connect(process.env.MONGODB_URI  ||'mongodb://root:example@mongo:27017/BackendPoS?authSource=admin'|| MONGODB_URI, options);
+      const conn = await mongoose.connect(process.env.MONGODB_URI  ||'mongodb://host.docker.internal:27017/BackendPoS', options);
       
       logger.info(`MongoDB Connected: ${conn.connection.host}`);
       setupEventListeners();

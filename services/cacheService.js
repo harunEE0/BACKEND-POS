@@ -1,64 +1,55 @@
 //E:\learn-code\backend-pos\services\cacheService.js
 // 
 // 
-const redis = require('redis');
+const {redisClient}  =require('../config/redis');
 const logger = require('../utils/logger');
 
-const {REDIS_PORT,REDIS_PASSWORD,REDIS_HOST} =require('../config/env');
 
-class CacheService {
-  constructor() {
-    this.client = redis.createClient({
-      socket: {
-        host: REDIS_HOST || 'localhost',
-        port: parseInt(REDIS_PORT) || 6379,
-      },
-      password: REDIS_PASSWORD || undefined, // ✅ เพิ่มตรงนี้
-    });
 
-    this.client.on('error', (err) => {
-      logger.error('🔴 Redis error:', err); // ✅ log ทั้ง object เพื่อเห็นรายละเอียด
-    });
-
-    this.client.on('connect', () => {
-      logger.info('✅ Connected to Redis');
-    });
-
-    this.client.connect(); // สำคัญสำหรับ Redis v4+
-  }
-
-  async get(key) {
+const catchService = {
+  get: async (key)=>{
     try {
-      return await this.client.get(key);
-    } catch (err) {
-      logger.error(`Cache get error: ${err.message}`);
-      return null;
+      const data = await redisClient.get(key);
+      return data;
+    } catch (error) {
+      logger.error(`Error getting cache for key ${key}: ${error.message}`);
+      throw error;
+      
     }
-  }
+  },
 
-  async set(key, value) {
+  setex: async (key, ttl ,value)=>{
     try {
-      await this.client.set(key, value);
-    } catch (err) {
-      logger.error(`Cache set error: ${err.message}`);
+      await redisClient.setEx(key, ttl, value);
+    } catch (error) {
+      logger.error(`Error setting cache for key ${key}: ${error.message}`);
+      throw error;
+      
     }
-  }
+  },
+  del: async (key)=>{
+    try {
+      await redisClient.del(key);
+    } catch (error) {
+      logger.error(`Error deleting cache for key ${key}: ${error.message}`);
+      throw error;
+      
+    }
+  },
 
-  async setex(key, ttl, value) {
+  flushDashboardCatche : async(key)=>{
     try {
-      await this.client.setEx(key, ttl, value); // Note: v4+ uses setEx, not setex
-    } catch (err) {
-      logger.error(`Cache setex error: ${err.message}`);
+      redisClient.del('dashboard_stats')
+      redisClient.del('dashboard_stats:products')
+      redisClient.del('dashboard_stats:todayOrders')
+      logger.info('Dashboard cache flush');
+    } catch (error) {
+      logger.error(`Error flushing dashboard cache: ${error.message}`);
+      throw error;
+      
     }
-  }
+  },
 
-  async del(key) {
-    try {
-      await this.client.del(key);
-    } catch (err) {
-      logger.error(`Cache del error: ${err.message}`);
-    }
-  }
 }
 
-module.exports = new CacheService();
+module.exports = catchService;

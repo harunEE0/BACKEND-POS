@@ -1,11 +1,13 @@
+//E:\learn-code\backend-pos\middleware\sessionCheck.js
+
 const SessionManager = require('../utils/sessionManager');
 const logger = require('../utils/logger');
 
 exports.checkSession = async (req, res, next) => {
   try {
-    const sessionToken = req.cookies.session_token;
+    const sessionToken = req.cookies.session_token || req.headers?.authorization?.split(' ')[1];
     
-    if (!sessionToken) {
+    if (!sessionToken.startsWith('session:')) {
       return res.status(401).json({ 
         success: false, 
         message: 'Not authenticated' 

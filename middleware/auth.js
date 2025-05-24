@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken');
 const {JWT_SECRET} = require('../config/env');
 const User = require('../models/User');
 const SessionManager = require('../utils/sessionManager');
-const{ErrorResponse} = require('../utils/ErrorResponse')
+const ErrorResponse = require('../utils/ErrorResponse');
+const logger = require('../utils/logger');
 
 
  const protect = async (req, res, next) => {
@@ -70,23 +71,50 @@ const auth = async (req, res, next) => {
 
 const requireAuth = async (req, res , next) => {
   try {
-
+  let token;
     
-    const token = req.cookies?.session_token || req.headers?.authorization?.split(' ')[1];
-    if (!token) {
-      throw new ErrorResponse('No token provided', 401);
+     // ตรวจสอบทั้งใน cookies และ headers
+   if (req.cookies?.session_token) {
+      token = req.cookies.session_token;
+    } else if (req.headers?.authorization?.startsWith('Bearer ')) {
+      token = req.headers.authorization.split(' ')[1];
+    } else if (req.headers?.session_token) {
+      token = req.headers.session_token;
     }
 
+    // ตรวจสอบการมีอยู่ของ token
+    if (!token) {
+      logger.warn('No session token provided');
+      return res.status(401).json({
+        success: false,
+        message: 'Authentication token required'
+      });
+    }
+
+     // ตรวจสอบรูปแบบ token อย่างละเอียด
+    if (typeof token !== 'string' || !token.startsWith('session:')) {
+      logger.warn(`Malformed token received: ${token}`);
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid token format - must start with "session:"'
+      });
+    }
+
+    // ตรวจสอบ session
     const session = await SessionManager.verifySession(token);
     if (!session) {
-      throw new ErrorResponse('Invalid session', 401);
+      logger.warn(`Invalid session for token: ${token}`);
+      return res.status(401).json({
+        success: false,
+        message: 'Invalid or expired session'
+      });
     }
 
     req.user = session;
-    req.token = token;
     next();
   } catch (error) {
-    next(err);
+    logger.error(`Authentication error: ${error.message}`, { stack: error.stack });
+    next(error);
     
   }
 }

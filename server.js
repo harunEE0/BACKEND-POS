@@ -1,3 +1,5 @@
+//E:\learn-code\backend-pos\server.js
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -11,7 +13,8 @@ const logger = require('./utils/logger');
 const connectDB = require('./config/db');
 const { PORT } = require('./config/env');
 const errorHandler = require('./middleware/errorHandler');
-
+const {connectRedis} = require('./config/redis')
+ 
 // Routes
 const auth = require('./routes/authRoute');
 const products = require('./routes/productRoute');
@@ -28,9 +31,9 @@ const initializeServers = async () => {
   try {
     // เชื่อมต่อ MongoDB
     await connectDB();
+    await connectRedis();
     
     // เชื่อมต่อ Redis 
-
     // Middleware
     app.use(express.json());
     app.use(cookieParser(process.env.COOKIE_SECRET || 'fallback-secret-key'));

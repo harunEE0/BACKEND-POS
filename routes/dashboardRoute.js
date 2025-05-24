@@ -8,14 +8,14 @@ const {
     getTodayOrders,
     getCustomerCount,
     getTodayPayments
-  } = require('../controllers/dahboard');
-const  {protect,authorize} = require('../middleware/auth');
+  } = require('../controllers/dashboard');
+const  {protect,authorize,requireAuth} = require('../middleware/auth');
 
-router.get('/', protect, getDashboardData);
-router.post('/update', protect, authorize('admin'), forceUpdateDashboard);
-router.get('/products', protect, getProductsData);
-router.get('/today-orders', protect, getTodayOrders);
-router.get('/customers', protect, getCustomerCount);
-router.get('/today-payments', protect, getTodayPayments);
+router.get('/', requireAuth, getDashboardData);
+router.post('/update', requireAuth, authorize('admin'), forceUpdateDashboard);
+router.get('/products', requireAuth, getProductsData);
+router.get('/today-orders', requireAuth, getTodayOrders);
+router.get('/customers',requireAuth, getCustomerCount);
+router.get('/today-payments', requireAuth, getTodayPayments);
 
 module.exports = router;
