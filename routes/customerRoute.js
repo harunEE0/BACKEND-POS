@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const {protect}= require('../middleware/auth');
+const {protect,requireAuth}= require('../middleware/auth');
 
 const {
     getCustomers,
@@ -16,13 +16,13 @@ const {
 
 router
   .route('/')
-  .get(protect, getCustomers)
-  .post(protect, createCustomer);
+  .get(requireAuth, getCustomers)
+  .post(requireAuth, createCustomer);
 
 router
   .route('/:id')
-  .get(protect, getCustomer)
-  .put(protect, updateCustomer)
-  .delete(protect, deleteCustomer);
+  .get(requireAuth, getCustomer)
+  .put(requireAuth, updateCustomer)
+  .delete(requireAuth, deleteCustomer);
 
 module.exports = router;

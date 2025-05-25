@@ -1,5 +1,6 @@
 /**backend-pos/controller/customer */
 const Customer = require('../models/customer')
+const logger = require('../utils/logger');
 
 exports.getCustomer = async (req, res, next) => {
     try {
@@ -38,9 +39,14 @@ exports.getCustomer = async (req, res, next) => {
       const customer = await Customer.create(req.body);
       res.status(201).json({
         success: true,
-        data: customer,
+        data: {
+        name: customer.name,
+        phone: customer.phone,
+        email: customer.email
+      }
       });
     } catch (err) {
+      logger.error(`Create Customer Error: ${err.message}`);
       next(err);
     }
   };

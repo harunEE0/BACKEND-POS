@@ -57,7 +57,7 @@ exports.getDashboardData = asyncHandler(async (req, res) => {
 
   
   } catch (err) {
-   logger.error(`Dashboard Error: ${err.message}`);
+    logger.error(`Dashboard Error: ${err.message}`);
     res.status(500).json({
       success: false,
       error: 'Server Error'
@@ -106,12 +106,13 @@ exports.getTodayOrders = asyncHandler(async (req, res) => {
 });
 
 
-exports.getCustomerCount = asyncHandler(async (req, res) => {
-  const data = await DashboardStats.findOne({}).select('totalCustomers lastUpdated');
+exports.getCustomers  = asyncHandler(async (req, res) => {
+  const data = await DashboardStats.findOne({}).select('customers  lastUpdated');
   res.json({
     success: true,
     lastUpdated: data.lastUpdated,
-    count: data.totalCustomers
+    count: data.customers.length,
+    customers: data.customers
   });
 });
 

@@ -173,3 +173,175 @@
 {"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-24 20:18:41"}}
 {"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-24 20:18:41"}}
 {"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-24 20:18:41"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-24 20:19:24"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-24 20:19:24"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-24 20:19:24"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-24 20:19:24"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-24 20:19:24"}}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Malformed token received: 6831fb7092c019844a244877","metadata":{"timestamp":"2025-05-24 20:19:27"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"User logged in: kida (ID: 6831fb7092c019844a244877)","metadata":{"timestamp":"2025-05-24 20:19:36"}}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Malformed token received: 6831fb7092c019844a244877:1748117976499","metadata":{"timestamp":"2025-05-24 20:19:53"}}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Session not found in Redis: session:6831fb7092c019844a244877:1624567890123","metadata":{"timestamp":"2025-05-24 20:20:14"}}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Invalid session for token: session:6831fb7092c019844a244877:1624567890123","metadata":{"timestamp":"2025-05-24 20:20:14"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"User logged in: kida (ID: 6831fb7092c019844a244877)","metadata":{"timestamp":"2025-05-24 20:20:24"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:11:46"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:11:46"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:11:46"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:11:46"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:11:46"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:13:30"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:13:30"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:13:30"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:13:30"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:13:30"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:13:40"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:13:40"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:13:40"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:13:40"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:13:40"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:15:24"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:15:24"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:15:24"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:15:24"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:15:24"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:15:46"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:15:46"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:15:46"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:15:46"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:15:46"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:15:50"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:15:50"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:15:50"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:15:50"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:15:50"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:16:18"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:16:18"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:16:18"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:16:18"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:16:18"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:16:33"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:16:33"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:16:33"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:16:33"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:16:33"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:16:39"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:16:39"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:16:39"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:16:39"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:16:39"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:20:09"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:20:09"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:20:09"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:20:09"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:20:09"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:52:57"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:52:57"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:52:57"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:52:57"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:52:57"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:57:27"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:57:27"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:57:27"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:57:27"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:57:27"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:58:34"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:58:34"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:58:34"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:58:34"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:58:34"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 06:59:36"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 06:59:36"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 06:59:37"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 06:59:37"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 06:59:37"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:01:00"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:01:00"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:01:00"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:01:00"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:01:00"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:01:19"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:01:19"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:01:19"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:01:19"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:01:19"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"User logged in: kida (ID: 6831fb7092c019844a244877)","metadata":{"timestamp":"2025-05-25 07:02:29"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:03:36"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:03:36"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:03:36"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:03:36"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:03:36"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:04:04"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:04:04"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:04:04"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:04:04"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:04:04"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:04:35"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:04:35"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:04:35"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:04:35"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:04:35"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:05:07"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:05:07"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:05:07"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:05:07"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:05:07"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:05:15"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:05:15"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:05:15"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:05:15"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:05:15"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:05:54"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:05:54"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:05:54"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:05:54"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:05:54"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:06:32"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:06:32"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:06:32"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:06:32"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:06:32"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:07:38"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:07:38"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:07:38"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:07:38"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:07:38"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:08:06"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:08:06"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:08:06"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:08:06"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:08:06"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:09:39"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:09:39"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:09:39"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:09:39"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:09:39"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:09:52"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:09:52"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:09:52"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:09:52"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:09:52"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:16:59"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:16:59"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:16:59"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:16:59"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:16:59"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:27:03"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:27:03"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:27:03"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:27:03"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:27:03"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:27:47"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:27:47"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:27:47"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:27:47"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:27:47"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:28:07"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:28:07"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:28:07"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:28:07"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:28:07"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"MongoDB Connected: host.docker.internal","metadata":{"timestamp":"2025-05-25 07:29:56"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to Redis successfully","metadata":{"timestamp":"2025-05-25 07:29:56"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Redis connection established","metadata":{"timestamp":"2025-05-25 07:29:56"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server is running on port 5000","metadata":{"timestamp":"2025-05-25 07:29:56"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"Environment: development","metadata":{"timestamp":"2025-05-25 07:29:56"}}

@@ -48,7 +48,27 @@ const dashboardStatsSchema = new mongoose.Schema({
   }],
 
   // ส่วนของ Customers 
-  totalCustomers: { type: Number, default: 0 },
+ customers: [
+  { 
+       customerId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'Customer',
+       },
+       name:{
+        type : String,
+        trim : true
+       },
+       phone:{
+        type: String
+       }
+      }
+ ],
+      
+  totalCustomers: { 
+    type: Number,
+    default: 0 
+  },
+
 
   // ส่วนของ Payments  อัพวันต่อวัน
  todayPayments: [{
@@ -89,16 +109,17 @@ dashboardStatsSchema.statics.updateDashboard = async function() {
   today.setHours(0, 0, 0, 0); // เริ่มต้นวันเวลา 00:00:00
 
    // ดึงข้อมูลแบบ parallel ด้วย Promise.all
-    const [products, todayOrders, customerCount, todayPayments] = await Promise.all([
+    const [products, todayOrders, customers, todayPayments] = await Promise.all([
       this.getProductsData(),
       this.getTodayOrdersData(today),
-      this.getCustomerCount(),
+      this.getCustomerData(),
       this.getTodayPaymentsData(today)
     ]);
      const formattedData = {
       products,
       todayOrders,
-      totalCustomers: customerCount,
+      customers,
+      totalCustomers: customers.length,
       todayPayments,
       lastUpdated: new Date()
     };
@@ -146,8 +167,12 @@ dashboardStatsSchema.statics.getTodayOrdersData = async function(today) {
 };
 
 // Helper method สำหรับนับจำนวนลูกค้า
-dashboardStatsSchema.statics.getCustomerCount = async function() {
-  return mongoose.model('Customer').countDocuments();
+dashboardStatsSchema.statics.getCustomerData = async function() {
+  return mongoose.model('Customer')
+  .find({})
+  .sort('name')
+  .select('name phone')
+  .lean()
 };
 
 // Helper method สำหรับดึงการชำระเงินวันนี้
