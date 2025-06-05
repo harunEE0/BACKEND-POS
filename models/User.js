@@ -19,6 +19,7 @@ const UserSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    required: [true, "Email is required"],
     unique: true,
     sparse: true,
     trim: true,
@@ -28,23 +29,28 @@ const UserSchema = new mongoose.Schema({
       message: (props) => `${props.value} is not a valid email address!`,
     },
   },
-  role: {
-    type: String,
-    enum: ["admin", "cashier"],
-    default: "cashier",
-  },
+  
   lastLogin: {
     type: Date,
   },
-  loginAttempts: {
-    type: Number,
-    default: 0,
+  isActive: {
+    type: Boolean,
+    default: true,
   },
   createAt: {
     type: Date,
     default: Date.now,
   },
-});
+ 
+
+}
+, {
+  timestamps: true,
+  versionKey: false,
+   strict: true, 
+  strictQuery: true 
+}
+);
 
 UserSchema.pre('save', async function(next) {
   if (!this.isModified('password')) return next();

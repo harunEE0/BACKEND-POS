@@ -4,6 +4,12 @@ const cacheService = require('../services/cacheService');
 const logger = require('../utils/logger');
 
 const dashboardStatsSchema = new mongoose.Schema({
+   store: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Store',
+    required: true,
+    index: true
+  },
   // ส่วนของ Products
   products: [{
     productId: { 
@@ -103,19 +109,20 @@ const dashboardStatsSchema = new mongoose.Schema({
  });
 
 
-dashboardStatsSchema.statics.updateDashboard = async function() {
+dashboardStatsSchema.statics.updateDashboard = async function(storeId) {
   try {
     const today = new Date();
   today.setHours(0, 0, 0, 0); // เริ่มต้นวันเวลา 00:00:00
 
    // ดึงข้อมูลแบบ parallel ด้วย Promise.all
     const [products, todayOrders, customers, todayPayments] = await Promise.all([
-      this.getProductsData(),
-      this.getTodayOrdersData(today),
-      this.getCustomerData(),
-      this.getTodayPaymentsData(today)
+      this.getProductsData(storeId),
+      this.getTodayOrdersData(today,storeId),
+      this.getCustomerData(storeId),
+      this.getTodayPaymentsData(today,storeId)
     ]);
      const formattedData = {
+       store: storeId,
       products,
       todayOrders,
       customers,
@@ -125,7 +132,7 @@ dashboardStatsSchema.statics.updateDashboard = async function() {
     };
   
      const updatedStats = await this.findOneAndUpdate(
-      {},
+      { store: storeId },
       formattedData,
       { 
         upsert: true, 
@@ -133,28 +140,29 @@ dashboardStatsSchema.statics.updateDashboard = async function() {
         setDefaultsOnInsert: true
       }
     );
-    logger.info('Dashboard updated and cache flushed');
+    logger.info(`Dashboard updated for store ${storeId} and cache flushed`);
      return updatedStats;
   } catch (error) {
-    logger.error(`Error updating dashboard: ${error.message}`);
+    logger.error(`Error updating dashboard for store ${storeId}: ${error.message}`);
     throw error;
     
   }
 };
 
 // Helper method สำหรับดึงข้อมูลสินค้า
-dashboardStatsSchema.statics.getProductsData = async function() {
+dashboardStatsSchema.statics.getProductsData = async function(storeId) {
   return mongoose.model('Product')
-    .find({})
+    .find({ store: storeId })
     .sort('_id')
     .select('name stock')
     .lean();
 };
 
 // Helper method สำหรับดึงคำสั่งซื้อวันนี้
-dashboardStatsSchema.statics.getTodayOrdersData = async function(today) {
+dashboardStatsSchema.statics.getTodayOrdersData = async function(today, storeId) {
   return mongoose.model('Order')
     .find({
+      store: storeId,
       createdAt: { $gte: today },
       paymentStatus: 'paid'
     })
@@ -167,16 +175,16 @@ dashboardStatsSchema.statics.getTodayOrdersData = async function(today) {
 };
 
 // Helper method สำหรับนับจำนวนลูกค้า
-dashboardStatsSchema.statics.getCustomerData = async function() {
+dashboardStatsSchema.statics.getCustomerData = async function(storeId) {
   return mongoose.model('Customer')
-  .find({})
+  .find({store: storeId})
   .sort('name')
   .select('name phone')
   .lean()
 };
 
 // Helper method สำหรับดึงการชำระเงินวันนี้
-dashboardStatsSchema.statics.getTodayPaymentsData = async function(today) {
+dashboardStatsSchema.statics.getTodayPaymentsData = async function(today, storeId) {
   return mongoose.model('Payment')
     .find({
       createdAt: { $gte: today },
@@ -184,9 +192,11 @@ dashboardStatsSchema.statics.getTodayPaymentsData = async function(today) {
     })
     .populate({
       path: 'order',
+      match: { store: storeId },
       select: 'orderNumber'
     })
-    .lean();
+    .lean()
+    .then(payments => payments.filter(p => p.order));
 };
 
 // อัปเดต Dashboard ทุกครั้งที่เรียกใช้

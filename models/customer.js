@@ -24,6 +24,11 @@ const CustomerSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  store: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Store',
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now,

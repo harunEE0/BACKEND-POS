@@ -27,4 +27,8 @@ COPY --chown=nodejs:nodejs . .
 ENV NODE_ENV=production
 EXPOSE 5000
 
+# Add health check and init script
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+  CMD curl -f http://localhost:5000/api/health || exit 1
+
 CMD ["npm", "run", "dev"]

@@ -43,7 +43,7 @@
     HOST: process.env.HOST || '0.0.0.0',
     
     // Database
-    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/BackendPoS',
+    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://root:example@mongodb:27017/BackendPoS?replicaSet=rs0&authSource=admin',
     MONGO_DEBUG: process.env.MONGO_DEBUG === 'true',
     
     // Redis

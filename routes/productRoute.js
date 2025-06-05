@@ -1,7 +1,7 @@
 //**backend-pos/routes/productRoute */
 const express = require("express");
 const router = express.Router();
-const { protect, authorize } = require("../middleware/auth");
+const { protect } = require("../middleware/auth");
 
 const {
   getProducts,
@@ -14,12 +14,12 @@ const {
 router
   .route('/')
   .get(getProducts)
-  .post(protect, authorize('admin'), createProduct);
+  .post(protect, createProduct);
 
 router
   .route('/:id')
   .get(getProduct)  // เปลี่ยนจาก getProduct เป็น GetProductId ให้ตรงกับ controller
-  .put(protect, authorize('admin'), updateProduct)
-  .delete(protect, authorize('admin'), deleteProduct);
+  .put(protect, updateProduct)
+  .delete(protect, deleteProduct);
 
 module.exports = router;

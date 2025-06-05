@@ -14,6 +14,7 @@ const connectDB = require('./config/db');
 const { PORT } = require('./config/env');
 const errorHandler = require('./middleware/errorHandler');
 const {connectRedis} = require('./config/redis')
+const {CORS_ORIGIN} = require('./config/env')
  
 // Routes
 const auth = require('./routes/authRoute');
@@ -24,6 +25,7 @@ const customers = require('./routes/customerRoute');
 const inventory = require('./routes/inventoryRoute')
 const cart = require('./routes/cartRoute')
 const dashboard = require('./routes/dashboardRoute')
+const storeRoutes = require('./routes/store');
 // ... import routes อื่นๆ ...
 
 // Database Connections
@@ -36,13 +38,37 @@ const initializeServers = async () => {
     // เชื่อมต่อ Redis 
     // Middleware
     app.use(express.json());
-    app.use(cookieParser(process.env.COOKIE_SECRET || 'fallback-secret-key'));
     app.use('/uploads', express.static('uploads'));
     app.use(helmet());
-    app.use(cors({
-      origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
-      credentials: true
-    }));
+   app.use(cors({
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      CORS_ORIGIN,
+      'http://localhost:3000',
+      'http://127.0.0.1:3000',
+      'http://172.17.32.1:3000', 
+      'http://localhost:5000',
+      'http://127.0.0.1:5000'
+    ];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie']
+}));
+
+// ตั้งค่า Cookie อย่างปลอดภัย
+app.use(cookieParser(process.env.COOKIE_SECRET || 'fallback-secret-key', {
+  httpOnly: false,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+  maxAge: 7 * 24 * 60 * 60 * 1000 // 1 week
+}));
+
 
     // Production Static Files
     if (process.env.NODE_ENV === 'production') {
@@ -61,6 +87,7 @@ const initializeServers = async () => {
     app.use('/api/v1/inventory', inventory);
     app.use('/api/v1/cart', cart);
     app.use('/api/v1/dashboard', dashboard);
+    app.use('/api/v1/stores', storeRoutes);
     // ... ใช้ routes อื่นๆ ...
 
     // Error Handling

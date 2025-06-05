@@ -4,6 +4,71 @@ const jwt = require('jsonwebtoken');
 const {JWT_EXPIRE,JWT_SECRET,NODE_ENV,COOKIE_DOMAIN} =require('../config/env');
 
 class AuthService {
+   // Generate JWT Token
+  generateToken(user) {
+    return jwt.sign(
+      {
+        id: user._id,
+        username: user.username,
+        role: user.role,
+        email: user.email
+      },
+      JWT_SECRET,
+      {
+        expiresIn: JWT_EXPIRE,
+        algorithm: 'HS256'
+      }
+    );
+  }
+
+  // Send token response
+  async sendTokenResponse(user, statusCode, res) {
+    try {
+      const token = this.generateToken(user);
+
+      // Cookie options
+      const cookieOptions = {
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+        httpOnly: true,
+        secure: NODE_ENV === 'production',
+        sameSite: 'strict',
+        domain: COOKIE_DOMAIN,
+        path: '/'
+      };
+
+      // Remove password from output
+      user.password = undefined;
+
+      res.status(statusCode)
+        .cookie('token', token, cookieOptions)
+        .json({
+          success: true,
+          token,
+          user
+        });
+
+    } catch (error) {
+      logger.error(`Error in sendTokenResponse: ${error.message}`);
+      throw error;
+    }
+  }
+
+  // Validate user registration data
+  validateRegistrationData(data) {
+    const { username, email, password, role } = data;
+    
+    if (!username || !email || !password || !role) {
+      throw new Error('Please provide all required fields');
+    }
+
+    if (password.length < 6) {
+      throw new Error('Password must be at least 6 characters');
+    }
+
+    if (!['admin', 'cashier'].includes(role)) {
+      throw new Error('Invalid role specified');
+    }
+  }
 
   refreshToken = async (req, res, next) => {
     try {

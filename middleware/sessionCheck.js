@@ -5,16 +5,22 @@ const logger = require('../utils/logger');
 
 exports.checkSession = async (req, res, next) => {
   try {
-    const sessionToken = req.cookies.session_token || req.headers?.authorization?.split(' ')[1];
+     const sessionToken = req.cookies.session_token || req.headers?.authorization?.split(' ')[1];
     
-    if (!sessionToken.startsWith('session:')) {
+    if (!sessionToken) {
       return res.status(401).json({ 
         success: false, 
         message: 'Not authenticated' 
       });
     }
 
-    // Verify session
+    if (!sessionToken.startsWith('session:')) {
+      return res.status(401).json({ 
+        success: false, 
+        message: 'Invalid session format' 
+      });
+    }
+
     const session = await SessionManager.verifySession(sessionToken);
     if (!session) {
       return res.status(401).json({ 
@@ -23,10 +29,7 @@ exports.checkSession = async (req, res, next) => {
       });
     }
 
-    // Refresh session TTL
     await SessionManager.refreshSession(sessionToken);
-
-    // Attach user to request
     req.user = session;
     next();
   } catch (err) {

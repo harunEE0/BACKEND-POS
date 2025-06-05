@@ -1,7 +1,6 @@
 /**backend-pos/controller/customer */
 const Customer = require('../models/customer')
 const logger = require('../utils/logger');
-
 exports.getCustomer = async (req, res, next) => {
     try {
       const customers = await Customer.find().sort('-createdAt');
@@ -11,24 +10,21 @@ exports.getCustomer = async (req, res, next) => {
         data: customers,
       });
     } catch (err) {
+      logger.error(`Get Customers Error: ${err.message}`);
       next(err);
     }
   };
   
   exports.getCustomers = async (req, res, next) => {
     try {
-      const { page = 1, limit = 10, search = '' } = req.query;
-      
-      const result = await customerService.getCustomers({
-        page: parseInt(page),
-        limit: parseInt(limit),
-        search
-      });
-  
-      res.json({
+      const customer = await Customer.find()
+      .sort('-createdAt');
+      res.status(200).json({
         success: true,
-        ...result
+        count: customer.length,
+        data: customer,
       });
+
     } catch (err) {
       next(err);
     }

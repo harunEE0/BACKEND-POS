@@ -2,14 +2,14 @@
 const asyncHandler = require('express-async-handler');
 const DashboardStats = require('../models/DashboardStats');
 const logger = require('../utils/logger');
-const catchService = require('../services/cacheService');
+const cacheService  = require('../services/cacheService');
 const {redisClient} = require('../config/redis');
 
 const CACHE_TTL = 300
 
 const getCachedData = async (key) =>{
   try {
-    const cachedData = await  catchService.get(key);
+    const cachedData = await  cacheService .get(key);
     return cachedData? JSON.parse(cachedData) : null;
   } catch (error) {
     logger.error(`Error getting cache for key ${key}: ${error.message}`);
@@ -47,12 +47,12 @@ exports.getDashboardData = asyncHandler(async (req, res) => {
       data = await DashboardStats.updateDashboard();
     }
 
-    await catchService.setex(cacheKey, CACHE_TTL, JSON.stringify(cachedData));
+    await cacheService.setex(cacheKey, CACHE_TTL, JSON.stringify(cachedData));
     
-    redisClient.json({
+    res.json({
       success: true,
       fromCache: false,
-      ...cachedData
+      data
     })
 
   
@@ -123,5 +123,30 @@ exports.getTodayPayments = asyncHandler(async (req, res) => {
     success: true,
     lastUpdated: data.lastUpdated,
     payments: data.todayPayments
+  });
+});
+
+
+
+
+exports.getStoreStats = asyncHandler(async (req, res, next) => {
+  const { storeId } = req.params;
+  
+  // ตรวจสอบว่าผู้ใช้มีสิทธิ์ในร้านค้านี้
+  const userRole = await UserStoreRole.findOne({
+    user: req.user.id,
+    store: storeId
+  });
+  
+  if (!userRole) {
+    return next(new ErrorResponse('Not authorized to access this store', 403));
+  }
+  
+  // ดึงข้อมูลสถิติของร้านค้า
+  const stats = await DashboardStats.findOne({ store: storeId });
+  
+  res.status(200).json({
+    success: true,
+    data: stats
   });
 });

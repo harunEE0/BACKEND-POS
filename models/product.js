@@ -19,6 +19,11 @@ const ProductSchema = new mongoose.Schema({
     min:[0, 'Stock cannot be negative'],
     default: 0
   },
+  store: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Store',
+    required: true
+  },
   category: {
     type: String,
     enum: ['food', 'beverage', 'other','fasion'],

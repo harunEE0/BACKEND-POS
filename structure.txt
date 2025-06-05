@@ -90,24 +90,31 @@ pos-backend/
 │   ├── order.js
 │   ├── payment.js
 │   ├── customer.js
-│   └── inventory.js
-├──event/
+│   ├── inventory.js
+│   └── store.js                 # ใหม่ - จัดการร้านค้า
+├── event/
 │   ├── dashboardEvents.js
 ├── middleware/
-│   ├── auth.js
+│   ├── auth.js                  # ปรับปรุง middleware ตรวจสอบสิทธิ์
 │   ├── cartMiddleware.js
 │   ├── errorHandler.js
 │   ├── sessionCheck.js
-│   └── socketAuth.js            
+│   ├── socketAuth.js            
+│   └── storeMiddleware.js       # ใหม่ - ตรวจสอบสิทธิ์ในร้านค้า
 ├── models/
-│   ├── User.js
-│   ├── Product.js
-│   ├── Order.js
-│   ├── OrderItem.js
-│   ├── Payment.js
-│   ├── Customer.js
-│   ├── InventoryLog.js
-│   └── DashboardStats.js        
+│   ├──   store
+│   |       ├── store.js  
+│   |       └── storeUser.js 
+│   ├── User.js                  # ลบ role ออก
+│   ├── Store.js                 # ใหม่ - ข้อมูลร้านค้า
+│   ├── StoreUser.js             # ใหม่ - บทบาทผู้ใช้ในร้านค้า
+│   ├── Product.js               # เพิ่ม storeId
+│   ├── Order.js                 # เพิ่ม storeId
+│   ├── OrderItem.js             
+│   ├── Payment.js               # เพิ่ม storeId
+│   ├── Customer.js              # เพิ่ม storeId
+│   ├── InventoryLog.js          # เพิ่ม storeId
+│   └── DashboardStats.js        # ปรับเป็นเก็บข้อมูลแยกตามร้าน
 ├── routes/
 │   ├── auth.js
 │   ├── cart.js                 
@@ -116,21 +123,24 @@ pos-backend/
 │   ├── order.js
 │   ├── payment.js
 │   ├── customer.js
-│   └── inventory.js
+│   ├── inventory.js
+│   └── store.js                 # ใหม่ - เส้นทางจัดการร้านค้า
 ├── services/                   
 │   ├── cartService.js
 │   ├── dashboardService.js
 │   ├── authService.js
 │   ├── cacheService.js
 │   ├── orderService.js
-│   └── inventoryService.js
+│   ├── inventoryService.js
+│   └── storeService.js          # ใหม่ - บริการจัดการร้านค้า
 ├── sockets/                     
 │   ├── dashboardSocket.js
 │   ├── orderSocket.js
 │   └── notificationSocket.js
-├── validatoe/                     
-│   ├── authvalidatoe.js
-│   └── productvalidatoe.js
+├── validator/                     
+│   ├── authValidator.js
+│   ├── productValidator.js
+│   └── storeValidator.js         # ใหม่ - validate การจัดการร้านค้า
 ├── utils/
 │   ├── jwt.js
 │   ├── helpers.js
@@ -141,13 +151,8 @@ pos-backend/
 │   ├── logger.js
 │   ├── sessionManager.js
 │   └── apiFeatures.js           
-│ 
-│ 
-│ 
 ├── dockerfile
-│
 ├── docker-compose.yml
-│ 
 └── server.js
 
 

@@ -59,6 +59,11 @@ const OrderSchema = new mongoose.Schema({
         enum: ['cash', 'credit_card', 'transfer', 'other'],
         default: 'cash',
       },
+      store: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Store',
+    required: true
+  },
       createdAt: {
         type: Date,
         default: Date.now,
@@ -87,12 +92,12 @@ OrderSchema.pre('save', async function(next) {
   if(!this.orderNumber){
     const OrderModel = mongoose.model('Order');
     const count = await OrderModel.countDocuments();
-    this.orderNumber = `ORD-${Date.now()}-${count + 1}`;
+    this.orderNumber = `ORD-${this.store.toString().slice(-4)}-${Date.now()}-${count + 1}`;
   }
 });
 OrderSchema.post('save', async function(doc) {
   if(doc.paymentStatus === 'paid'){
-    await mongoose.model('DaashboardStats').updateDashboardStats()
+    await mongoose.model('DaashboardStats').updateDashboardStats(doc.store)
   }
 });
 
